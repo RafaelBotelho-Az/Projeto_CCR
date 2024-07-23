@@ -52,7 +52,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_toggle_home.clicked.connect(self.leftMenu)
         self.tableWidget_criar.cellClicked.connect(self.table_comboboxes)
         self.init_comboboxes()
-        self.pushButton.clicked.connect(self.valor_comboboxes)
+        self.btn_calcular.clicked.connect(self.valor_comboboxes)
+        self.btn_calcular.clicked.connect(lambda: self.calcular(coluna=3))
+        
+
 
 ################  FUNÇÃO HOME #########################################################################
     def leftMenu(self):
@@ -279,6 +282,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 combobox_col1.clear()
                 combobox_col1.addItems(options_col1)
 #######################################################################################################
+    def calcular(self, coluna):
+        valor_total = 0
+        for row in range(self.tableWidget_criar.rowCount()):
+            item = self.tableWidget_criar.item(row, coluna)
+            if item and item.text():  # Verifica se o item não está vazio e contém texto
+                try:
+                    valor = float(item.text())
+                    valor_total += valor
+                except ValueError:
+                    print(f"Erro ao converter o valor da célula na linha {row}, coluna {coluna}: '{item.text()}'")
+        print(f"Valor total: {valor_total}")
+
+        return valor_total
+
 
 
 if __name__ == "__main__":

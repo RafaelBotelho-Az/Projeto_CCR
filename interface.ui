@@ -290,7 +290,9 @@ QPushButton{color: rgb(255, 255, 255);}</string>
                <widget class="QLabel" name="label_2">
                 <property name="font">
                  <font>
-                  <pointsize>10</pointsize>
+                  <pointsize>16</pointsize>
+                  <weight>50</weight>
+                  <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
@@ -412,7 +414,7 @@ QPushButton{color: rgb(255, 255, 255);}</string>
           <item>
            <widget class="QStackedWidget" name="pages">
             <property name="currentIndex">
-             <number>3</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="pg_home">
              <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -572,7 +574,7 @@ QPushButton{
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
                <layout class="QGridLayout" name="gridLayout">
-                <item row="2" column="0">
+                <item row="0" column="5">
                  <widget class="QLineEdit" name="lineEdit_lucro">
                   <property name="minimumSize">
                    <size>
@@ -599,12 +601,84 @@ color: #000000</string>
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                   </property>
                   <property name="placeholderText">
-                   <string>DEFINA O LUCRO DESEJADO EM %: </string>
+                   <string>DEFINA O LUCRO DESEJADO</string>
                   </property>
                  </widget>
                 </item>
-                <item row="3" column="0" colspan="7">
-                 <widget class="QLabel" name="label_valor_total">
+                <item row="2" column="6" colspan="2">
+                 <widget class="QPushButton" name="btn_salvar_receita">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>200</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">QPushButton:hover{
+	background-color: rgb(80, 80, 80);
+	border-radius:5px;
+	color:#ffffff
+}
+
+QPushButton{
+	border-radius: 5px;
+	background-color:  rgb(162, 102, 233);
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>SALVAR RECEITA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="6" colspan="2">
+                 <widget class="QLineEdit" name="lineEdit_qtd">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="sizeIncrement">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="baseSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(239, 239, 239);
+color: #000000</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>QUANTIDADE PRODUZIDA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0" colspan="8">
+                 <widget class="QLabel" name="label_valor_total_lucro">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -613,15 +687,66 @@ color: #000000</string>
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>7</pointsize>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
                   <property name="text">
-                   <string>VALOR TOTAL DA RECEITA :</string>
+                   <string>VALOR TOTAL + LUCRO SOBRE CUSTO:</string>
                   </property>
                  </widget>
                 </item>
-                <item row="1" column="0" colspan="7">
+                <item row="0" column="0" colspan="5">
+                 <widget class="QLineEdit" name="lineEdit_nome">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>16777215</width>
+                    <height>16777213</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(239, 239, 239);
+color: #000000</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>NOME DA RECEITA</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0" colspan="8">
+                 <widget class="QLabel" name="label_valor_unitario">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>VALOR UNITÁRIO + LUCRO SOBRE CUSTO:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="8">
                  <widget class="QTableWidget" name="tableWidget_criar">
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(239, 239, 239);
@@ -794,8 +919,8 @@ color: #000000</string>
                   </column>
                  </widget>
                 </item>
-                <item row="4" column="0" colspan="7">
-                 <widget class="QLabel" name="label_valor_total_lucro">
+                <item row="2" column="0" colspan="5">
+                 <widget class="QLabel" name="label_valor_total">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -804,102 +929,28 @@ color: #000000</string>
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>7</pointsize>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
                   <property name="text">
-                   <string>VALOR TOTAL + LUCRO SOBRE CUSTO:</string>
+                   <string>VALOR TOTAL DA RECEITA :</string>
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="0" colspan="5">
-                 <widget class="QLineEdit" name="lineEdit_nome">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777213</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(239, 239, 239);
-color: #000000</string>
-                  </property>
-                  <property name="placeholderText">
-                   <string>NOME DA RECEITA:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="5" colspan="2">
-                 <widget class="QLineEdit" name="lineEdit_qtd">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
+                <item row="2" column="5">
+                 <widget class="QPushButton" name="btn_calcular">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
-                    <height>0</height>
+                    <height>20</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
-                    <width>16777215</width>
+                    <width>200</width>
                     <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="sizeIncrement">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="baseSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(239, 239, 239);
-color: #000000</string>
-                  </property>
-                  <property name="placeholderText">
-                   <string>QUANTIDADE PRODUZIDA:</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1" colspan="2">
-                 <widget class="QLabel" name="label_valor_un">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>7</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>VALOR UNITÁRIO + LUCRO: </string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="5" colspan="2">
-                 <widget class="QPushButton" name="pushButton">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
                    </size>
                   </property>
                   <property name="styleSheet">
@@ -915,7 +966,7 @@ QPushButton{
 }</string>
                   </property>
                   <property name="text">
-                   <string>SALVAR RECEITA</string>
+                   <string>CALCULAR VALORES</string>
                   </property>
                  </widget>
                 </item>
