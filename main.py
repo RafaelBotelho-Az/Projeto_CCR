@@ -21,7 +21,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        self.setWindowTitle('Az - Sistema para cadastro e calculo de receitas')
+        self.setWindowTitle('Az - Sistema para e calcular o custo de receitas')
         appIcon = QIcon(u"")
         self.setWindowIcon(appIcon)
         self.setFixedSize(1300, 900)
