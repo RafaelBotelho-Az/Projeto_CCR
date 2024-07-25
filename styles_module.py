@@ -20,3 +20,10 @@ def apply_styles(table_widget):
             background-color: #575757;
 }
     """)
+
+def set_label_style(label):
+    label.setStyleSheet("""
+        color: red;
+        font-size: 13;
+        font-weight: bold;
+    """)

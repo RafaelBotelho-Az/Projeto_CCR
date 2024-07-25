@@ -4,7 +4,7 @@ from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QMessageBox, QComboBox
 from ui_main import Ui_MainWindow
 from funcs import converter_unidade
-from styles_module import apply_styles
+from styles_module import apply_styles, set_label_style
 import sys, json, os
 
 
@@ -29,11 +29,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.load_products()
         self.lista_nomes = [item['nome'] for item in self.lista_produtos]
         apply_styles(self.tableWidget_criar)
+        set_label_style(self.label_vt)
+        set_label_style(self.label_vtl)
+        set_label_style(self.label_vu)
 
         self.tableWidget_receitas.setColumnWidth(0, 680)
         self.tableWidget_criar.setColumnWidth(0, 600)
         self.tableWidget_criar.setColumnWidth(2, 120)
-        self.tableWidget_criar.setColumnWidth(3, 140)
+        self.tableWidget_criar.setColumnWidth(3, 130)
         self.tableWidget_produtos.setColumnWidth(0, 500)
         self.tableWidget_produtos.setColumnWidth(2, 120)
         self.tableWidget_produtos.setColumnWidth(3, 150)
@@ -292,7 +295,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     valor_total += valor
                 except ValueError:
                     print(f"Erro ao converter o valor da célula na linha {row}, coluna {coluna}: '{item.text()}'")
-        print(f"Valor total: {valor_total}")
+        try:
+            valor_mais_lucro = valor_total + (valor_total * int(self.lineEdit_lucro.text()) / 100)
+            valor_unitario_lucro = valor_mais_lucro / int(self.lineEdit_qtd.text())
+
+
+            self.label_vt.setText(f' R$ {valor_total:.2f}')
+            self.label_vtl.setText(f' R$ {valor_mais_lucro:.2f}')
+            self.label_vu.setText(f' R$ {valor_unitario_lucro:.2f}')
+
+        except ValueError:
+            self.label_vt.setText('Os campos QUANTIDADE e LUCRO não podem estar vazios, digite numeros inteiros')
+            self.label_vtl.setText('Os campos QUANTIDADE e LUCRO não podem estar vazios, digite numeros inteiros')
+            self.label_vu.setText('Os campos QUANTIDADE e LUCRO não podem estar vazios, digite numeros inteiros')
+
 
         return valor_total
 
