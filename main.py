@@ -265,9 +265,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         item.setFlags(Qt.ItemIsSelectable)
 
                         self.tableWidget_criar.setItem(row, 3, item)
-                    except (ValueError, TypeError):
-                        item = QTableWidgetItem("Erro")
-                        self.tableWidget_criar.setItem(row, 3, item)
+                    except (ValueError, TypeError) as e:
+                        self.show_error_message(f"Erro ao calcular valor: {e}")
 
     def table_comboboxes(self, row, column):
         # Mostrar popup do NoScrollComboBox quando uma célula das duas primeiras colunas for clicada
@@ -284,6 +283,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if isinstance(combobox_col1, NoScrollComboBox):
                 combobox_col1.clear()
                 combobox_col1.addItems(options_col1)
+
+    def show_error_message(self, message):
+        msg_box = QMessageBox()
+        msg_box.setIcon(QMessageBox.Critical)
+        msg_box.setText(message)
+        msg_box.setWindowTitle("Erro")
+        msg_box.setStandardButtons(QMessageBox.Ok)
+        msg_box.exec()
+
 #######################################################################################################
     def calcular(self, coluna):
         valor_total = 0

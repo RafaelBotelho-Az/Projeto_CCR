@@ -322,48 +322,24 @@ class Ui_MainWindow(object):
         self.pg_criar.setObjectName(u"pg_criar")
         self.gridLayout = QGridLayout(self.pg_criar)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.lineEdit_nome = QLineEdit(self.pg_criar)
-        self.lineEdit_nome.setObjectName(u"lineEdit_nome")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.lineEdit_nome.sizePolicy().hasHeightForWidth())
-        self.lineEdit_nome.setSizePolicy(sizePolicy1)
-        self.lineEdit_nome.setMinimumSize(QSize(0, 20))
-        self.lineEdit_nome.setMaximumSize(QSize(16777215, 16777213))
-        self.lineEdit_nome.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
-"color: #000000")
-
-        self.gridLayout.addWidget(self.lineEdit_nome, 0, 0, 1, 2)
-
-        self.lineEdit_lucro = QLineEdit(self.pg_criar)
-        self.lineEdit_lucro.setObjectName(u"lineEdit_lucro")
-        self.lineEdit_lucro.setMinimumSize(QSize(0, 20))
-        self.lineEdit_lucro.setMaximumSize(QSize(250, 16777215))
+        self.label_7 = QLabel(self.pg_criar)
+        self.label_7.setObjectName(u"label_7")
         font5 = QFont()
-        font5.setPointSize(10)
-        self.lineEdit_lucro.setFont(font5)
-        self.lineEdit_lucro.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
-"color: #000000")
-        self.lineEdit_lucro.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        font5.setBold(True)
+        self.label_7.setFont(font5)
 
-        self.gridLayout.addWidget(self.lineEdit_lucro, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.label_7, 0, 4, 1, 1, Qt.AlignHCenter)
 
-        self.lineEdit_qtd = QLineEdit(self.pg_criar)
-        self.lineEdit_qtd.setObjectName(u"lineEdit_qtd")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.lineEdit_qtd.sizePolicy().hasHeightForWidth())
-        self.lineEdit_qtd.setSizePolicy(sizePolicy2)
-        self.lineEdit_qtd.setMinimumSize(QSize(0, 20))
-        self.lineEdit_qtd.setMaximumSize(QSize(16777215, 16777215))
-        self.lineEdit_qtd.setSizeIncrement(QSize(0, 0))
-        self.lineEdit_qtd.setBaseSize(QSize(0, 0))
-        self.lineEdit_qtd.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
-"color: #000000")
+        self.label_valor_total = QLabel(self.pg_criar)
+        self.label_valor_total.setObjectName(u"label_valor_total")
+        self.label_valor_total.setMinimumSize(QSize(0, 20))
+        self.label_valor_total.setMaximumSize(QSize(300, 20))
+        font6 = QFont()
+        font6.setPointSize(10)
+        font6.setBold(True)
+        self.label_valor_total.setFont(font6)
 
-        self.gridLayout.addWidget(self.lineEdit_qtd, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_valor_total, 2, 0, 1, 1)
 
         self.tableWidget_criar = QTableWidget(self.pg_criar)
         if (self.tableWidget_criar.columnCount() < 4):
@@ -440,18 +416,7 @@ class Ui_MainWindow(object):
         self.tableWidget_criar.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
 "color: #000000")
 
-        self.gridLayout.addWidget(self.tableWidget_criar, 1, 0, 1, 4)
-
-        self.label_valor_total = QLabel(self.pg_criar)
-        self.label_valor_total.setObjectName(u"label_valor_total")
-        self.label_valor_total.setMinimumSize(QSize(0, 20))
-        self.label_valor_total.setMaximumSize(QSize(300, 20))
-        font6 = QFont()
-        font6.setPointSize(10)
-        font6.setBold(True)
-        self.label_valor_total.setFont(font6)
-
-        self.gridLayout.addWidget(self.label_valor_total, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.tableWidget_criar, 1, 0, 1, 6)
 
         self.label_vt = QLabel(self.pg_criar)
         self.label_vt.setObjectName(u"label_vt")
@@ -460,7 +425,7 @@ class Ui_MainWindow(object):
 
         self.btn_salvar_receita = QPushButton(self.pg_criar)
         self.btn_salvar_receita.setObjectName(u"btn_salvar_receita")
-        self.btn_salvar_receita.setMinimumSize(QSize(0, 20))
+        self.btn_salvar_receita.setMinimumSize(QSize(120, 20))
         self.btn_salvar_receita.setMaximumSize(QSize(200, 16777215))
         self.btn_salvar_receita.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
@@ -473,7 +438,7 @@ class Ui_MainWindow(object):
 "	background-color:  rgb(162, 102, 233);\n"
 "}")
 
-        self.gridLayout.addWidget(self.btn_salvar_receita, 2, 3, 1, 1)
+        self.gridLayout.addWidget(self.btn_salvar_receita, 2, 5, 1, 1)
 
         self.label_valor_total_lucro = QLabel(self.pg_criar)
         self.label_valor_total_lucro.setObjectName(u"label_valor_total_lucro")
@@ -483,14 +448,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.label_valor_total_lucro, 3, 0, 1, 1)
 
-        self.label_vtl = QLabel(self.pg_criar)
-        self.label_vtl.setObjectName(u"label_vtl")
-
-        self.gridLayout.addWidget(self.label_vtl, 3, 1, 1, 1)
-
         self.btn_calcular = QPushButton(self.pg_criar)
         self.btn_calcular.setObjectName(u"btn_calcular")
-        self.btn_calcular.setMinimumSize(QSize(0, 20))
+        self.btn_calcular.setMinimumSize(QSize(120, 20))
         self.btn_calcular.setMaximumSize(QSize(200, 16777215))
         self.btn_calcular.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
@@ -503,7 +463,53 @@ class Ui_MainWindow(object):
 "	background-color:  rgb(162, 102, 233);\n"
 "}")
 
-        self.gridLayout.addWidget(self.btn_calcular, 3, 3, 1, 1)
+        self.gridLayout.addWidget(self.btn_calcular, 3, 5, 1, 1)
+
+        self.label_vtl = QLabel(self.pg_criar)
+        self.label_vtl.setObjectName(u"label_vtl")
+
+        self.gridLayout.addWidget(self.label_vtl, 3, 1, 1, 1)
+
+        self.lineEdit_nome = QLineEdit(self.pg_criar)
+        self.lineEdit_nome.setObjectName(u"lineEdit_nome")
+        self.lineEdit_nome.setEnabled(True)
+        sizePolicy.setHeightForWidth(self.lineEdit_nome.sizePolicy().hasHeightForWidth())
+        self.lineEdit_nome.setSizePolicy(sizePolicy)
+        self.lineEdit_nome.setMinimumSize(QSize(670, 20))
+        self.lineEdit_nome.setMaximumSize(QSize(16777215, 16777213))
+        self.lineEdit_nome.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
+"color: #000000")
+
+        self.gridLayout.addWidget(self.lineEdit_nome, 0, 0, 1, 2)
+
+        self.lineEdit_lucro = QLineEdit(self.pg_criar)
+        self.lineEdit_lucro.setObjectName(u"lineEdit_lucro")
+        self.lineEdit_lucro.setMinimumSize(QSize(120, 20))
+        self.lineEdit_lucro.setMaximumSize(QSize(120, 16777215))
+        font7 = QFont()
+        font7.setPointSize(10)
+        self.lineEdit_lucro.setFont(font7)
+        self.lineEdit_lucro.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
+"color: #000000")
+        self.lineEdit_lucro.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.lineEdit_lucro, 0, 3, 1, 1)
+
+        self.lineEdit_qtd = QLineEdit(self.pg_criar)
+        self.lineEdit_qtd.setObjectName(u"lineEdit_qtd")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.lineEdit_qtd.sizePolicy().hasHeightForWidth())
+        self.lineEdit_qtd.setSizePolicy(sizePolicy1)
+        self.lineEdit_qtd.setMinimumSize(QSize(0, 20))
+        self.lineEdit_qtd.setMaximumSize(QSize(120, 16777215))
+        self.lineEdit_qtd.setSizeIncrement(QSize(0, 0))
+        self.lineEdit_qtd.setBaseSize(QSize(0, 0))
+        self.lineEdit_qtd.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
+"color: #000000")
+
+        self.gridLayout.addWidget(self.lineEdit_qtd, 0, 5, 1, 1)
 
         self.label_valor_unitario = QLabel(self.pg_criar)
         self.label_valor_unitario.setObjectName(u"label_valor_unitario")
@@ -517,6 +523,13 @@ class Ui_MainWindow(object):
         self.label_vu.setObjectName(u"label_vu")
 
         self.gridLayout.addWidget(self.label_vu, 4, 1, 1, 1)
+
+        self.label_8 = QLabel(self.pg_criar)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setMaximumSize(QSize(100, 16777215))
+        self.label_8.setFont(font5)
+
+        self.gridLayout.addWidget(self.label_8, 0, 2, 1, 1, Qt.AlignHCenter)
 
         self.pages.addWidget(self.pg_criar)
         self.pg_cadastrar = QWidget()
@@ -566,9 +579,9 @@ class Ui_MainWindow(object):
         self.btn_cadastrar.setObjectName(u"btn_cadastrar")
         self.btn_cadastrar.setMinimumSize(QSize(600, 31))
         self.btn_cadastrar.setMaximumSize(QSize(16777215, 16777215))
-        font7 = QFont()
-        font7.setPointSize(13)
-        self.btn_cadastrar.setFont(font7)
+        font8 = QFont()
+        font8.setPointSize(13)
+        self.btn_cadastrar.setFont(font8)
         self.btn_cadastrar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_cadastrar.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
@@ -627,7 +640,7 @@ class Ui_MainWindow(object):
         self.error_label = QLabel(self.frame)
         self.error_label.setObjectName(u"error_label")
         self.error_label.setMaximumSize(QSize(16777215, 30))
-        self.error_label.setFont(font5)
+        self.error_label.setFont(font7)
 
         self.gridLayout_3.addWidget(self.error_label, 6, 1, 1, 2, Qt.AlignHCenter)
 
@@ -754,11 +767,11 @@ class Ui_MainWindow(object):
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.label_dev = QLabel(self.frame_2)
         self.label_dev.setObjectName(u"label_dev")
-        font8 = QFont()
-        font8.setFamilies([u"Calibri"])
-        font8.setPointSize(10)
-        font8.setBold(False)
-        self.label_dev.setFont(font8)
+        font9 = QFont()
+        font9.setFamilies([u"Calibri"])
+        font9.setPointSize(10)
+        font9.setBold(False)
+        self.label_dev.setFont(font9)
         self.label_dev.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.verticalLayout_7.addWidget(self.label_dev)
@@ -792,16 +805,15 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Desenvolvido por: </span><span style=\" font-size:7pt;\">Rafael Botelho</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Contato:</span><span style=\" font-size:7pt;\"> (11) 94072-4816</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Email:</span><span style=\" font-size:7pt;\"> rafaelbotelho@live.com</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Sistema:</span><span style=\" font-size:7pt;\"> Cadastro e C\u00e1lculo</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Status:</span><span style=\" font-size:7pt;\"> Ativo</span></p><p align=\"center\"><span style=\" font-size:7pt;\"><br/></span></p></body></html>", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"Page 2", None))
         self.btn_toggle_home.setText("")
-        self.label_top.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Sistema para calcular o custo de produ\u00e7\u00e3o</p></body></html>", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:72pt; color:#a366e9;\">Az</span></p></body></html>", None))
+        self.label_top.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Sistema para calcular o custo de receitas</p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a366e9;\">SCCR</span></p></body></html>", None))
         self.label_receitas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; color:#000000;\">SUAS RECEITAS</span></p></body></html>", None))
         ___qtablewidgetitem = self.tableWidget_receitas.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"RECEITAS", None));
         self.btn_receitas_abrir.setText(QCoreApplication.translate("MainWindow", u"ABRIR", None))
         self.btn_receitas_excluir.setText(QCoreApplication.translate("MainWindow", u"EXCLUIR", None))
-        self.lineEdit_nome.setPlaceholderText(QCoreApplication.translate("MainWindow", u"NOME DA RECEITA", None))
-        self.lineEdit_lucro.setPlaceholderText(QCoreApplication.translate("MainWindow", u"DEFINA O LUCRO DESEJADO", None))
-        self.lineEdit_qtd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"QUANTIDADE PRODUZIDA", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"QUANTIDADE:", None))
+        self.label_valor_total.setText(QCoreApplication.translate("MainWindow", u"VALOR TOTAL DA RECEITA :", None))
         ___qtablewidgetitem1 = self.tableWidget_criar.horizontalHeaderItem(0)
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"PRODUTO", None));
         ___qtablewidgetitem2 = self.tableWidget_criar.horizontalHeaderItem(1)
@@ -868,14 +880,17 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"28", None));
         ___qtablewidgetitem33 = self.tableWidget_criar.verticalHeaderItem(28)
         ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"30", None));
-        self.label_valor_total.setText(QCoreApplication.translate("MainWindow", u"VALOR TOTAL DA RECEITA :", None))
         self.label_vt.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
         self.btn_salvar_receita.setText(QCoreApplication.translate("MainWindow", u"SALVAR RECEITA", None))
         self.label_valor_total_lucro.setText(QCoreApplication.translate("MainWindow", u"VALOR TOTAL + LUCRO SOBRE CUSTO:", None))
-        self.label_vtl.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
         self.btn_calcular.setText(QCoreApplication.translate("MainWindow", u"CALCULAR VALORES", None))
+        self.label_vtl.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.lineEdit_nome.setPlaceholderText(QCoreApplication.translate("MainWindow", u"NOME DA RECEITA", None))
+        self.lineEdit_lucro.setPlaceholderText(QCoreApplication.translate("MainWindow", u"LUCRO DESEJADO", None))
+        self.lineEdit_qtd.setPlaceholderText(QCoreApplication.translate("MainWindow", u"QTD. PRODUZIDA", None))
         self.label_valor_unitario.setText(QCoreApplication.translate("MainWindow", u"VALOR UNIT\u00c1RIO + LUCRO SOBRE CUSTO:", None))
         self.label_vu.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"LUCRO:", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"PRODUTO:", None))
         self.lineEdit_produto.setText("")
         self.lineEdit_produto.setPlaceholderText(QCoreApplication.translate("MainWindow", u"PRODUTO", None))
