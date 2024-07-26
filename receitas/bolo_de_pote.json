@@ -1,0 +1,22 @@
+[
+    {
+        "nome_receita": "bolo de pote",
+        "lucro": "15",
+        "qtd_receita": "15"
+    },
+    {
+        "produto": "leite",
+        "unidade": "l",
+        "quantidade": "2"
+    },
+    {
+        "produto": "chocolate",
+        "unidade": "g",
+        "quantidade": "200"
+    },
+    {
+        "produto": "trigo",
+        "unidade": "kg",
+        "quantidade": "4"
+    }
+]

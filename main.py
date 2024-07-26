@@ -7,7 +7,6 @@ from funcs import converter_unidade
 from styles_module import apply_styles, set_label_style
 import sys, json, os
 
-
 class NoScrollComboBox(QComboBox):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -15,7 +14,6 @@ class NoScrollComboBox(QComboBox):
     def wheelEvent(self, event):
         # Ignorar eventos de rolagem
         event.ignore()
-
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
@@ -32,6 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         set_label_style(self.label_vt)
         set_label_style(self.label_vtl)
         set_label_style(self.label_vu)
+        
 
         self.tableWidget_receitas.setColumnWidth(0, 680)
         self.tableWidget_criar.setColumnWidth(0, 600)
@@ -57,8 +56,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.init_comboboxes()
         self.btn_calcular.clicked.connect(self.valor_comboboxes)
         self.btn_calcular.clicked.connect(lambda: self.calcular(coluna=3))
-        
-
+        self.btn_salvar_receita.clicked.connect(self.salvar_receita)
 
 ################  FUNÇÃO HOME #########################################################################
     def leftMenu(self):
@@ -291,7 +289,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         msg_box.setWindowTitle("Erro")
         msg_box.setStandardButtons(QMessageBox.Ok)
         msg_box.exec()
-
 #######################################################################################################
     def calcular(self, coluna):
         valor_total = 0
@@ -313,12 +310,50 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.label_vu.setText(f' R$ {valor_unitario_lucro:.2f}')
 
         except ValueError:
-            self.label_vt.setText('Os campos QUANTIDADE e LUCRO não podem estar vazios, digite numeros inteiros')
-            self.label_vtl.setText('Os campos QUANTIDADE e LUCRO não podem estar vazios, digite numeros inteiros')
-            self.label_vu.setText('Os campos QUANTIDADE e LUCRO não podem estar vazios, digite numeros inteiros')
+            self.show_error_message('Os campos LUCRO e QUANTIDADE não podem estar vazios, digite numeros inteiros')
 
 
         return valor_total
+#######################################################################################################
+    def salvar_receita(self): # Adiciona os dados da receita em uma lista para salvar em .json
+        self.lista_receita = []
+
+        non_receita = self.lineEdit_nome.text().strip()
+        lucro_receita = self.lineEdit_lucro.text().strip()
+        qtd_receita = self.lineEdit_lucro.text().strip()
+        receita_core = {'nome_receita': non_receita, 'lucro': lucro_receita, 'qtd_receita': qtd_receita}
+
+        self.lista_receita.append(receita_core)
+
+        rows = self.tableWidget_criar.rowCount()
+        keys = ['produto', 'unidade', 'quantidade']
+
+        for row in range(rows):
+            item_dict = {}
+
+            for col in range(3):
+                # Verifica se a célula contém um QComboBox
+                cell_widget = self.tableWidget_criar.cellWidget(row, col)
+                if isinstance(cell_widget, QComboBox):
+                    item_text = cell_widget.currentText().strip()
+                else:
+                    item = self.tableWidget_criar.item(row, col)
+                    item_text = item.text().strip() if item is not None else ""
+
+                if item_text:
+                    item_dict[keys[col]] = item_text
+
+            if item_dict:
+                self.lista_receita.append(item_dict)
+
+        file_name = self.lista_receita[0]['nome_receita'].replace(' ', '_') + '.json'
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        folder_path = os.path.join(script_dir, 'receitas')
+        file_path = os.path.join(folder_path, file_name)
+
+        with open(file_path, 'w', encoding='utf-8') as json_file:
+            json.dump(self.lista_receita, json_file, ensure_ascii=False, indent=4)
+
 
 
 
