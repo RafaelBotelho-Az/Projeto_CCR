@@ -16,20 +16,21 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTabWidget, QTableWidget, QTableWidgetItem, QToolBox,
-    QVBoxLayout, QWidget)
+    QHeaderView, QLabel, QLayout, QLineEdit,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
+    QToolBox, QVBoxLayout, QWidget)
 import icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1125, 707)
+        MainWindow.resize(1360, 900)
         MainWindow.setStyleSheet(u"background-color: rgb(24, 24, 24);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setMinimumSize(QSize(1300, 900))
         self.centralwidget.setStyleSheet(u"*{border:none;}\n"
 "\n"
 "QLabel{color: rgb(255, 255, 255);}")
@@ -38,6 +39,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(0, 9, 0, -1)
         self.left_container = QFrame(self.centralwidget)
         self.left_container.setObjectName(u"left_container")
+        self.left_container.setMinimumSize(QSize(0, 0))
         self.left_container.setMaximumSize(QSize(0, 16777215))
         self.left_container.setFrameShape(QFrame.StyledPanel)
         self.left_container.setFrameShadow(QFrame.Raised)
@@ -46,13 +48,16 @@ class Ui_MainWindow(object):
         self.gridLayout_4.setContentsMargins(9, 9, 0, 0)
         self.top_frame = QFrame(self.left_container)
         self.top_frame.setObjectName(u"top_frame")
+        self.top_frame.setMinimumSize(QSize(0, 0))
+        self.top_frame.setMaximumSize(QSize(16777215, 48))
         self.top_frame.setFrameShape(QFrame.StyledPanel)
         self.top_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.top_frame)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label_logo_2 = QLabel(self.top_frame)
         self.label_logo_2.setObjectName(u"label_logo_2")
-        self.label_logo_2.setMinimumSize(QSize(0, 0))
+        self.label_logo_2.setMinimumSize(QSize(0, 30))
+        self.label_logo_2.setMaximumSize(QSize(16777215, 0))
         font = QFont()
         font.setFamilies([u"Sitka Text Semibold"])
         font.setPointSize(18)
@@ -61,13 +66,14 @@ class Ui_MainWindow(object):
         self.label_logo_2.setStyleSheet(u"")
         self.label_logo_2.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_2.addWidget(self.label_logo_2)
+        self.verticalLayout_2.addWidget(self.label_logo_2, 0, Qt.AlignTop)
 
 
         self.gridLayout_4.addWidget(self.top_frame, 0, 0, 1, 1)
 
         self.botton_frame = QFrame(self.left_container)
         self.botton_frame.setObjectName(u"botton_frame")
+        self.botton_frame.setMinimumSize(QSize(0, 770))
         self.botton_frame.setStyleSheet(u"QFrame{background-color: rgb(65, 65, 65);}\n"
 "\n"
 "QToolBox{background-color: rgb(288, 254, 255);}\n"
@@ -76,22 +82,33 @@ class Ui_MainWindow(object):
         self.botton_frame.setFrameShape(QFrame.StyledPanel)
         self.botton_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.botton_frame)
+        self.verticalLayout_3.setSpacing(0)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_3.setSizeConstraint(QLayout.SetDefaultConstraint)
+        self.verticalLayout_3.setContentsMargins(-1, 9, -1, 9)
         self.toolBox = QToolBox(self.botton_frame)
         self.toolBox.setObjectName(u"toolBox")
-        self.toolBox.setStyleSheet(u"background-color: rgb(24, 24, 24);\n"
-"border-top-left-radius: 10px")
+        self.toolBox.setMinimumSize(QSize(223, 0))
+        self.toolBox.setMaximumSize(QSize(223, 16777215))
+        font1 = QFont()
+        font1.setPointSize(8)
+        self.toolBox.setFont(font1)
+        self.toolBox.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
+        self.toolBox.setLayoutDirection(Qt.LeftToRight)
+        self.toolBox.setStyleSheet(u"QToolBox::tab {\n"
+"    border-radius: 0px; /* Ajuste o raio da borda */\n"
+"}")
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
-        self.page_1.setGeometry(QRect(0, 0, 107, 532))
+        self.page_1.setGeometry(QRect(0, 0, 223, 731))
         self.verticalLayout_8 = QVBoxLayout(self.page_1)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.btn_menu_home = QPushButton(self.page_1)
         self.btn_menu_home.setObjectName(u"btn_menu_home")
         self.btn_menu_home.setMinimumSize(QSize(0, 30))
-        font1 = QFont()
-        font1.setPointSize(12)
-        self.btn_menu_home.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(12)
+        self.btn_menu_home.setFont(font2)
         self.btn_menu_home.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_menu_home.setStyleSheet(u"QPushButton:hover{\n"
 "background-color: rgb(65, 65, 65);\n"
@@ -105,7 +122,7 @@ class Ui_MainWindow(object):
         self.btn_menu_receitas = QPushButton(self.page_1)
         self.btn_menu_receitas.setObjectName(u"btn_menu_receitas")
         self.btn_menu_receitas.setMinimumSize(QSize(0, 30))
-        self.btn_menu_receitas.setFont(font1)
+        self.btn_menu_receitas.setFont(font2)
         self.btn_menu_receitas.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_menu_receitas.setStyleSheet(u"QPushButton:hover{\n"
 "background-color: rgb(65, 65, 65);\n"
@@ -119,7 +136,7 @@ class Ui_MainWindow(object):
         self.btn_menu_criar = QPushButton(self.page_1)
         self.btn_menu_criar.setObjectName(u"btn_menu_criar")
         self.btn_menu_criar.setMinimumSize(QSize(0, 30))
-        self.btn_menu_criar.setFont(font1)
+        self.btn_menu_criar.setFont(font2)
         self.btn_menu_criar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_menu_criar.setStyleSheet(u"QPushButton:hover{\n"
 "background-color: rgb(65, 65, 65);\n"
@@ -133,7 +150,7 @@ class Ui_MainWindow(object):
         self.btn_menu_cadastrar = QPushButton(self.page_1)
         self.btn_menu_cadastrar.setObjectName(u"btn_menu_cadastrar")
         self.btn_menu_cadastrar.setMinimumSize(QSize(0, 30))
-        self.btn_menu_cadastrar.setFont(font1)
+        self.btn_menu_cadastrar.setFont(font2)
         self.btn_menu_cadastrar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_menu_cadastrar.setStyleSheet(u"QPushButton:hover{\n"
 "background-color: rgb(65, 65, 65);\n"
@@ -148,27 +165,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addItem(self.verticalSpacer)
 
-        self.toolBox.addItem(self.page_1, u"Page 1")
-        self.page_2 = QWidget()
-        self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 170, 532))
-        self.verticalLayout_9 = QVBoxLayout(self.page_2)
-        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.label_2 = QLabel(self.page_2)
-        self.label_2.setObjectName(u"label_2")
-        font2 = QFont()
-        font2.setPointSize(16)
-        font2.setBold(False)
-        self.label_2.setFont(font2)
-
-        self.verticalLayout_9.addWidget(self.label_2)
-
-        self.toolBox.addItem(self.page_2, u"Page 2")
+        self.toolBox.addItem(self.page_1, u"")
 
         self.verticalLayout_3.addWidget(self.toolBox)
 
 
-        self.gridLayout_4.addWidget(self.botton_frame, 1, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.botton_frame, 1, 0, 1, 1, Qt.AlignTop)
 
 
         self.horizontalLayout.addWidget(self.left_container)
@@ -193,7 +195,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_toggle_home.sizePolicy().hasHeightForWidth())
         self.btn_toggle_home.setSizePolicy(sizePolicy)
-        self.btn_toggle_home.setMinimumSize(QSize(75, 0))
+        self.btn_toggle_home.setMinimumSize(QSize(75, 30))
         self.btn_toggle_home.setSizeIncrement(QSize(0, 0))
         self.btn_toggle_home.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon = QIcon()
@@ -225,6 +227,7 @@ class Ui_MainWindow(object):
         self.main_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_6 = QVBoxLayout(self.main_frame)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_6.setContentsMargins(-1, 9, -1, -1)
         self.pages = QStackedWidget(self.main_frame)
         self.pages.setObjectName(u"pages")
         self.pg_home = QWidget()
@@ -531,6 +534,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.label_8, 0, 2, 1, 1, Qt.AlignHCenter)
 
+        self.label_msg_salvo = QLabel(self.pg_criar)
+        self.label_msg_salvo.setObjectName(u"label_msg_salvo")
+
+        self.gridLayout.addWidget(self.label_msg_salvo, 4, 2, 1, 4)
+
         self.pages.addWidget(self.pg_criar)
         self.pg_cadastrar = QWidget()
         self.pg_cadastrar.setObjectName(u"pg_cadastrar")
@@ -787,6 +795,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.toolBox.setCurrentIndex(0)
+        self.toolBox.layout().setSpacing(0)
         self.pages.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
 
@@ -801,9 +810,7 @@ class Ui_MainWindow(object):
         self.btn_menu_receitas.setText(QCoreApplication.translate("MainWindow", u"Receitas", None))
         self.btn_menu_criar.setText(QCoreApplication.translate("MainWindow", u"Criar Receita", None))
         self.btn_menu_cadastrar.setText(QCoreApplication.translate("MainWindow", u"Cadastrar", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_1), QCoreApplication.translate("MainWindow", u"Page 1", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Desenvolvido por: </span><span style=\" font-size:7pt;\">Rafael Botelho</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Contato:</span><span style=\" font-size:7pt;\"> (11) 94072-4816</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Email:</span><span style=\" font-size:7pt;\"> rafaelbotelho@live.com</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Sistema:</span><span style=\" font-size:7pt;\"> Cadastro e C\u00e1lculo</span></p><p align=\"center\"><span style=\" font-size:7pt; font-weight:600;\">Status:</span><span style=\" font-size:7pt;\"> Ativo</span></p><p align=\"center\"><span style=\" font-size:7pt;\"><br/></span></p></body></html>", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"Page 2", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_1), "")
         self.btn_toggle_home.setText("")
         self.label_top.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Sistema para calcular o custo de receitas</p></body></html>", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a366e9;\">SCCR</span></p></body></html>", None))
@@ -891,6 +898,7 @@ class Ui_MainWindow(object):
         self.label_valor_unitario.setText(QCoreApplication.translate("MainWindow", u"VALOR UNIT\u00c1RIO + LUCRO SOBRE CUSTO:", None))
         self.label_vu.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"LUCRO:", None))
+        self.label_msg_salvo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><br/></p></body></html>", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"PRODUTO:", None))
         self.lineEdit_produto.setText("")
         self.lineEdit_produto.setPlaceholderText(QCoreApplication.translate("MainWindow", u"PRODUTO", None))

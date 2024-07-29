@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1125</width>
-    <height>707</height>
+    <width>1360</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,6 +17,12 @@
    <string notr="true">background-color: rgb(24, 24, 24);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>1300</width>
+     <height>900</height>
+    </size>
+   </property>
    <property name="styleSheet">
     <string notr="true">*{border:none;}
 
@@ -34,6 +40,12 @@ QLabel{color: rgb(255, 255, 255);}</string>
     </property>
     <item>
      <widget class="QFrame" name="left_container">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>0</width>
@@ -61,6 +73,18 @@ QLabel{color: rgb(255, 255, 255);}</string>
        </property>
        <item row="0" column="0">
         <widget class="QFrame" name="top_frame">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>48</height>
+          </size>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -68,11 +92,17 @@ QLabel{color: rgb(255, 255, 255);}</string>
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
+          <item alignment="Qt::AlignTop">
            <widget class="QLabel" name="label_logo_2">
             <property name="minimumSize">
              <size>
               <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
               <height>0</height>
              </size>
             </property>
@@ -98,8 +128,14 @@ QLabel{color: rgb(255, 255, 255);}</string>
          </layout>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="1" column="0" alignment="Qt::AlignTop">
         <widget class="QFrame" name="botton_frame">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>770</height>
+          </size>
+         </property>
          <property name="styleSheet">
           <string notr="true">QFrame{background-color: rgb(65, 65, 65);}
 
@@ -113,14 +149,53 @@ QToolBox::tab{border-radius: 5px; background-color: rgb(162, 102, 233)}</string>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <property name="topMargin">
+           <number>9</number>
+          </property>
+          <property name="bottomMargin">
+           <number>9</number>
+          </property>
           <item>
            <widget class="QToolBox" name="toolBox">
+            <property name="minimumSize">
+             <size>
+              <width>223</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>223</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgb(24, 24, 24);
-border-top-left-radius: 10px</string>
+             <string notr="true">QToolBox::tab {
+    border-radius: 0px; /* Ajuste o raio da borda */
+}</string>
             </property>
             <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <property name="tabSpacing">
              <number>0</number>
             </property>
             <widget class="QWidget" name="page_1">
@@ -128,12 +203,12 @@ border-top-left-radius: 10px</string>
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>107</width>
-               <height>532</height>
+               <width>223</width>
+               <height>731</height>
               </rect>
              </property>
              <attribute name="label">
-              <string>Page 1</string>
+              <string/>
              </attribute>
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <item>
@@ -267,35 +342,6 @@ QPushButton{color: rgb(255, 255, 255);}</string>
               </item>
              </layout>
             </widget>
-            <widget class="QWidget" name="page_2">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>170</width>
-               <height>532</height>
-              </rect>
-             </property>
-             <attribute name="label">
-              <string>Page 2</string>
-             </attribute>
-             <layout class="QVBoxLayout" name="verticalLayout_9">
-              <item>
-               <widget class="QLabel" name="label_2">
-                <property name="font">
-                 <font>
-                  <pointsize>16</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:600;&quot;&gt;Desenvolvido por: &lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;Rafael Botelho&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:600;&quot;&gt;Contato:&lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt; (11) 94072-4816&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:600;&quot;&gt;Email:&lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt; rafaelbotelho@live.com&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:600;&quot;&gt;Sistema:&lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt; Cadastro e Cálculo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:600;&quot;&gt;Status:&lt;/span&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt; Ativo&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
            </widget>
           </item>
          </layout>
@@ -339,7 +385,7 @@ QPushButton{color: rgb(255, 255, 255);}</string>
             <property name="minimumSize">
              <size>
               <width>75</width>
-              <height>0</height>
+              <height>30</height>
              </size>
             </property>
             <property name="sizeIncrement">
@@ -405,6 +451,9 @@ QPushButton{color: rgb(255, 255, 255);}</string>
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="topMargin">
+           <number>9</number>
+          </property>
           <item>
            <widget class="QStackedWidget" name="pages">
             <property name="currentIndex">
@@ -1033,6 +1082,13 @@ color: #000000</string>
                 </property>
                 <property name="text">
                  <string>LUCRO:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2" colspan="4">
+               <widget class="QLabel" name="label_msg_salvo">
+                <property name="text">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                 </property>
                </widget>
               </item>

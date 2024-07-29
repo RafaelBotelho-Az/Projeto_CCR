@@ -1,0 +1,22 @@
+[
+    {
+        "nome_receita": "brigadeiro",
+        "lucro": "10",
+        "qtd_receita": "10"
+    },
+    {
+        "produto": "leite",
+        "unidade": "l",
+        "quantidade": "2"
+    },
+    {
+        "produto": "chocolate",
+        "unidade": "g",
+        "quantidade": "500"
+    },
+    {
+        "produto": "manteiga",
+        "unidade": "g",
+        "quantidade": "100"
+    }
+]

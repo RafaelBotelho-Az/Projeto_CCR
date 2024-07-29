@@ -1,5 +1,5 @@
 from PySide6 import QtCore
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QMessageBox, QComboBox
 from ui_main import Ui_MainWindow
@@ -30,15 +30,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         set_label_style(self.label_vt)
         set_label_style(self.label_vtl)
         set_label_style(self.label_vu)
-        
 
-        self.tableWidget_receitas.setColumnWidth(0, 680)
-        self.tableWidget_criar.setColumnWidth(0, 600)
+        self.tableWidget_receitas.setColumnWidth(0, 725)
+        self.tableWidget_criar.setColumnWidth(0, 604)
         self.tableWidget_criar.setColumnWidth(2, 120)
         self.tableWidget_criar.setColumnWidth(3, 130)
         self.tableWidget_produtos.setColumnWidth(0, 500)
-        self.tableWidget_produtos.setColumnWidth(2, 120)
-        self.tableWidget_produtos.setColumnWidth(3, 150)
+        self.tableWidget_produtos.setColumnWidth(2, 115)
+        self.tableWidget_produtos.setColumnWidth(3, 145)
 ################  PAGINAS  #############################################################################
         self.btn_menu_home.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_home))
         self.btn_menu_receitas.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_receitas))
@@ -57,6 +56,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_calcular.clicked.connect(self.valor_comboboxes)
         self.btn_calcular.clicked.connect(lambda: self.calcular(coluna=3))
         self.btn_salvar_receita.clicked.connect(self.salvar_receita)
+        self.btn_menu_receitas.clicked.connect(self.listar_arquivos_json)
+        self.btn_receitas_abrir.clicked.connect(self.reset_page)
+        self.btn_receitas_abrir.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_criar))
 
 ################  FUNÇÃO HOME #########################################################################
     def leftMenu(self):
@@ -241,6 +243,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tableWidget_criar.setItem(row, 1, QTableWidgetItem(""))
             self.tableWidget_criar.item(row, 1).setTextAlignment(Qt.AlignCenter)
 
+        for row in range(self.tableWidget_criar.rowCount()):
+            item = self.tableWidget_criar.item(row, 3)
+            if item is None:
+                item = QTableWidgetItem()
+                self.tableWidget_criar.setItem(row, 3, item)
+            item.setFlags(Qt.ItemIsSelectable)
+
     def valor_comboboxes(self):
         for row in range(self.tableWidget_criar.rowCount()):
             combobox_col1 = self.tableWidget_criar.cellWidget(row, 0)
@@ -315,7 +324,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         return valor_total
 #######################################################################################################
-    def salvar_receita(self): # Adiciona os dados da receita em uma lista para salvar em .json
+    def salvar_receita(self): # Adiciona os dados da receita em uma lista e salva em .json
         self.lista_receita = []
 
         non_receita = self.lineEdit_nome.text().strip()
@@ -350,12 +359,43 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         folder_path = os.path.join(script_dir, 'receitas')
         file_path = os.path.join(folder_path, file_name)
+        try:
+            with open(file_path, 'w', encoding='utf-8') as json_file:
+                json.dump(self.lista_receita, json_file, ensure_ascii=False, indent=4)
+            self.label_msg_salvo.setText('Receita salva com Sucesso!')
+            self.label_msg_salvo.setStyleSheet("color: green; font-weight: bold;")
+        except: 
+            self.label_msg_salvo.setText('Não foi possivel salvar a receita!')
+            self.label_msg_salvo.setStyleSheet("color: red; font-weight: bold;")
+            pass # validar possiveis errors
+#######################################################################################################
+    def listar_arquivos_json(self, diretorio):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        folder_path = os.path.join(script_dir, 'receitas')
+        diretorio = folder_path
 
-        with open(file_path, 'w', encoding='utf-8') as json_file:
-            json.dump(self.lista_receita, json_file, ensure_ascii=False, indent=4)
+        all_files = os.listdir(diretorio)
+        arquivos_json = [arquivo for arquivo in all_files if arquivo.endswith('.json')]
+        arquivos_formatados = [arquivo[:-5].replace('_', ' ') for arquivo in arquivos_json]
 
+        # Adiciona a lista de arquivos na QTableWidget
+        self.tableWidget_receitas.setRowCount(len(arquivos_formatados))
+        for row, arquivo in enumerate(arquivos_formatados):
+            self.tableWidget_receitas.setItem(row, 0, QTableWidgetItem(arquivo))
 
-
+        return arquivos_formatados
+#######################################################################################################
+    def reset_page(self):
+        self.tableWidget_criar.clearContents()
+        self.lineEdit_nome.clear()
+        self.lineEdit_lucro.clear()
+        self.lineEdit_qtd.clear()
+        self.label_vt.setText("")
+        self.label_vtl.setText("")
+        self.label_vu.setText("")
+        self.label_msg_salvo.setText("")
+        self.init_comboboxes()
+#######################################################################################################
 
 if __name__ == "__main__":
 

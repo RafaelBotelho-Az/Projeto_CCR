@@ -1,0 +1,27 @@
+[
+    {
+        "nome_receita": "massa pão de ló",
+        "lucro": "10",
+        "qtd_receita": "10"
+    },
+    {
+        "produto": "trigo",
+        "unidade": "kg",
+        "quantidade": "4"
+    },
+    {
+        "produto": "açucar",
+        "unidade": "g",
+        "quantidade": "800"
+    },
+    {
+        "produto": "leite",
+        "unidade": "l",
+        "quantidade": "2"
+    },
+    {
+        "produto": "manteiga",
+        "unidade": "g",
+        "quantidade": "400"
+    }
+]
