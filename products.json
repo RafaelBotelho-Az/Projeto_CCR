@@ -58,5 +58,11 @@
     "unidade": "und",
     "quantidade": 12,
     "valor": 9.5
+  },
+  {
+    "nome": "frango",
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 20.0
   }
 ]

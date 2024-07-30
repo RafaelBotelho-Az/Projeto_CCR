@@ -1,0 +1,27 @@
+[
+    {
+        "nome_receita": "torta de frango",
+        "lucro": "80",
+        "qtd_receita": "80"
+    },
+    {
+        "produto": "frango",
+        "unidade": "g",
+        "quantidade": "700"
+    },
+    {
+        "produto": "manteiga",
+        "unidade": "g",
+        "quantidade": "200"
+    },
+    {
+        "produto": "trigo",
+        "unidade": "kg",
+        "quantidade": "1"
+    },
+    {
+        "produto": "ovos",
+        "unidade": "und",
+        "quantidade": "4"
+    }
+]

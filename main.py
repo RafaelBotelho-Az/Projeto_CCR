@@ -59,7 +59,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_menu_receitas.clicked.connect(self.listar_arquivos_json)
         self.btn_receitas_abrir.clicked.connect(self.reset_page)
         self.btn_receitas_abrir.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_criar))
-
+        self.btn_limpar.clicked.connect(self.reset_page)
+        self.btn_receitas_excluir.clicked.connect(self.del_receita)
 ################  FUNÇÃO HOME #########################################################################
     def leftMenu(self):
         width = self.left_container.width()
@@ -327,10 +328,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def salvar_receita(self): # Adiciona os dados da receita em uma lista e salva em .json
         self.lista_receita = []
 
-        non_receita = self.lineEdit_nome.text().strip()
+        nom_receita = self.lineEdit_nome.text().strip()
         lucro_receita = self.lineEdit_lucro.text().strip()
         qtd_receita = self.lineEdit_lucro.text().strip()
-        receita_core = {'nome_receita': non_receita, 'lucro': lucro_receita, 'qtd_receita': qtd_receita}
+        receita_core = {'nome_receita': nom_receita, 'lucro': lucro_receita, 'qtd_receita': qtd_receita}
 
         self.lista_receita.append(receita_core)
 
@@ -396,6 +397,39 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_msg_salvo.setText("")
         self.init_comboboxes()
 #######################################################################################################
+    def del_receita(self):
+        selected_items = self.tableWidget_receitas.selectedItems()
+        if not selected_items:
+            QMessageBox.warning(self, "Atenção", "Nenhum arquivo selecionado.")
+            return
+
+        arquivo_formatado = selected_items[0].text()
+        arquivo = arquivo_formatado.replace(' ', '_') + '.json'
+
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        folder_path = os.path.join(script_dir, 'receitas')
+        caminho_arquivo = os.path.join(folder_path, arquivo)
+
+        # Exibe uma caixa de diálogo de confirmação
+        reply = QMessageBox.question(
+            self, 'Confirmação',
+            f"Tem certeza de que deseja deletar a receita '{arquivo_formatado}'?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if reply == QMessageBox.Yes:
+            if os.path.exists(caminho_arquivo):
+                os.remove(caminho_arquivo)
+                self.tableWidget_receitas.removeRow(selected_items[0].row())
+                QMessageBox.information(self, "Sucesso", f"A receita '{arquivo_formatado}' foi deletada.")
+            else:
+                QMessageBox.warning(self, "Erro", f"O arquivo '{arquivo_formatado}' não foi encontrado no diretório.")
+        else:
+            QMessageBox.information(self, "Cancelado", "A operação de exclusão foi cancelada.")
+
+
+
 
 if __name__ == "__main__":
 
