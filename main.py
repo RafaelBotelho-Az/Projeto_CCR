@@ -4,7 +4,7 @@ from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QMessageBox, QComboBox
 from ui_main import Ui_MainWindow
 from funcs import converter_unidade
-from styles_module import apply_styles, set_label_style
+from styles_module import apply_styles, set_label_style, table_style, table_style2
 import sys, json, os
 
 class NoScrollComboBox(QComboBox):
@@ -19,7 +19,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        self.setWindowTitle('Az - Sistema para e calcular o custo de receitas')
+        self.setWindowTitle('SCCR - Sistema para e calcular o custo de receitas')
         appIcon = QIcon(u"")
         self.setWindowIcon(appIcon)
         self.setFixedSize(1300, 900)
@@ -30,14 +30,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         set_label_style(self.label_vt)
         set_label_style(self.label_vtl)
         set_label_style(self.label_vu)
+        table_style(self.tableWidget_receitas)
+        table_style2(self.tableWidget_produtos)
 
-        self.tableWidget_receitas.setColumnWidth(0, 725)
+        self.tableWidget_receitas.setColumnWidth(0, 758)
         self.tableWidget_criar.setColumnWidth(0, 604)
         self.tableWidget_criar.setColumnWidth(2, 120)
         self.tableWidget_criar.setColumnWidth(3, 130)
         self.tableWidget_produtos.setColumnWidth(0, 500)
         self.tableWidget_produtos.setColumnWidth(2, 115)
-        self.tableWidget_produtos.setColumnWidth(3, 145)
+        self.tableWidget_produtos.setColumnWidth(3, 140)
 ################  PAGINAS  #############################################################################
         self.btn_menu_home.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_home))
         self.btn_menu_receitas.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_receitas))
@@ -61,7 +63,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_receitas_abrir.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_criar))
         self.btn_limpar.clicked.connect(self.reset_page)
         self.btn_receitas_excluir.clicked.connect(self.del_receita)
-################  FUNÇÃO HOME #########################################################################
+#######################################################################################################  FUNÇÃO HOME #########################################################################
     def leftMenu(self):
         width = self.left_container.width()
 
@@ -75,7 +77,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.setEndValue(newWidth)
         self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
         self.animation.start()
-#######################################################################################################
+
     def cadastrar(self):
         unidades_permitidas = ['kg', 'g', 'l', 'ml', 'und']
 
@@ -131,7 +133,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.save_products(self.lista_produtos)
         self.load_products()
         self.update_comboboxes()
-#######################################################################################################
+
     def save_products(self, products, filename='products.json'):
         try:
             with open(filename, 'w', encoding='utf8') as file:
@@ -152,7 +154,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.lista_produtos = []
             
         self.lista_nomes = [item['nome'] for item in self.lista_produtos]
-#######################################################################################################
+################  FUNÇÕES PARA EDITAR E EXCLUIR ITENS DA TABELA  ######################################
     def coloca_na_tabela(self, lista_produtos):
         self.tableWidget_produtos.setRowCount(len(lista_produtos))
 
@@ -161,7 +163,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 item = QTableWidgetItem(str(value))
                 item.setTextAlignment(Qt.AlignCenter)
                 self.tableWidget_produtos.setItem(row, column, item)
-################  FUNÇÕES PARA EDITAR E EXCLUIR ITENS DA TABELA  ######################################
+
     def on_cell_clicked(self, row, column):
         self.selected_row = row  # Armazena a linha selecionada
 
@@ -320,29 +322,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.label_vu.setText(f' R$ {valor_unitario_lucro:.2f}')
 
         except ValueError:
-            self.show_error_message('Os campos LUCRO e QUANTIDADE não podem estar vazios, digite numeros inteiros')
+            self.show_error_message('Os campos "Lucro" e "Quantidade" devem conter número válidos e não podem estar vazios')
 
 
         return valor_total
-#######################################################################################################
-    def salvar_receita(self): # Adiciona os dados da receita em uma lista e salva em .json
+
+    def salvar_receita(self):
         self.lista_receita = []
 
         nom_receita = self.lineEdit_nome.text().strip()
-        lucro_receita = self.lineEdit_lucro.text().strip()
-        qtd_receita = self.lineEdit_lucro.text().strip()
-        receita_core = {'nome_receita': nom_receita, 'lucro': lucro_receita, 'qtd_receita': qtd_receita}
+        if not nom_receita:
+            QMessageBox.warning(self, "Atenção", "O nome da receita não pode estar vazio.")
+            return
 
+        try:
+            lucro_receita = float(self.lineEdit_lucro.text().strip())
+        except ValueError:
+            QMessageBox.warning(self, "Atenção", "O lucro da receita deve ser um número válido.")
+            return
+
+        try:
+            qtd_receita = float(self.lineEdit_qtd.text().strip())
+        except ValueError:
+            QMessageBox.warning(self, "Atenção", "A quantidade da receita deve ser um número válido.")
+            return
+
+        # Cria o dicionário principal da receita
+        receita_core = {'nome_receita': nom_receita, 'lucro': lucro_receita, 'qtd_receita': qtd_receita}
         self.lista_receita.append(receita_core)
 
+        # Processa os itens da QTableWidget
         rows = self.tableWidget_criar.rowCount()
         keys = ['produto', 'unidade', 'quantidade']
 
         for row in range(rows):
             item_dict = {}
-
             for col in range(3):
-                # Verifica se a célula contém um QComboBox
                 cell_widget = self.tableWidget_criar.cellWidget(row, col)
                 if isinstance(cell_widget, QComboBox):
                     item_text = cell_widget.currentText().strip()
@@ -356,20 +371,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if item_dict:
                 self.lista_receita.append(item_dict)
 
-        file_name = self.lista_receita[0]['nome_receita'].replace(' ', '_') + '.json'
+        file_name = nom_receita.replace(' ', '_') + '.json'
         script_dir = os.path.dirname(os.path.abspath(__file__))
         folder_path = os.path.join(script_dir, 'receitas')
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
         file_path = os.path.join(folder_path, file_name)
+
         try:
             with open(file_path, 'w', encoding='utf-8') as json_file:
                 json.dump(self.lista_receita, json_file, ensure_ascii=False, indent=4)
-            self.label_msg_salvo.setText('Receita salva com Sucesso!')
+            self.label_msg_salvo.setText('Receita salva com sucesso!')
             self.label_msg_salvo.setStyleSheet("color: green; font-weight: bold;")
-        except: 
-            self.label_msg_salvo.setText('Não foi possivel salvar a receita!')
+        except Exception as e:
+            self.label_msg_salvo.setText(f'Não foi possível salvar a receita: {e}')
             self.label_msg_salvo.setStyleSheet("color: red; font-weight: bold;")
-            pass # validar possiveis errors
-#######################################################################################################
+
     def listar_arquivos_json(self, diretorio):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         folder_path = os.path.join(script_dir, 'receitas')
@@ -385,7 +402,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.tableWidget_receitas.setItem(row, 0, QTableWidgetItem(arquivo))
 
         return arquivos_formatados
-#######################################################################################################
+
     def reset_page(self):
         self.tableWidget_criar.clearContents()
         self.lineEdit_nome.clear()
@@ -396,7 +413,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_vu.setText("")
         self.label_msg_salvo.setText("")
         self.init_comboboxes()
-#######################################################################################################
+
     def del_receita(self):
         selected_items = self.tableWidget_receitas.selectedItems()
         if not selected_items:
@@ -427,8 +444,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 QMessageBox.warning(self, "Erro", f"O arquivo '{arquivo_formatado}' não foi encontrado no diretório.")
         else:
             QMessageBox.information(self, "Cancelado", "A operação de exclusão foi cancelada.")
-
-
 
 
 if __name__ == "__main__":

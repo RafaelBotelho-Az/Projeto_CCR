@@ -253,23 +253,16 @@ class Ui_MainWindow(object):
         self.pg_receitas.setObjectName(u"pg_receitas")
         self.horizontalLayout_5 = QHBoxLayout(self.pg_receitas)
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.horizontalSpacer = QSpacerItem(150, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer)
-
         self.frame_3 = QFrame(self.pg_receitas)
         self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setStyleSheet(u"background-color: rgb(213, 213, 213);\n"
+        self.frame_3.setMinimumSize(QSize(800, 0))
+        self.frame_3.setMaximumSize(QSize(800, 16777215))
+        self.frame_3.setStyleSheet(u"background-color: #575757;\n"
 "")
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.frame_3)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.label_receitas = QLabel(self.frame_3)
-        self.label_receitas.setObjectName(u"label_receitas")
-
-        self.verticalLayout_5.addWidget(self.label_receitas)
-
         self.tableWidget_receitas = QTableWidget(self.frame_3)
         if (self.tableWidget_receitas.columnCount() < 1):
             self.tableWidget_receitas.setColumnCount(1)
@@ -284,42 +277,42 @@ class Ui_MainWindow(object):
 
         self.btn_receitas_abrir = QPushButton(self.frame_3)
         self.btn_receitas_abrir.setObjectName(u"btn_receitas_abrir")
-        self.btn_receitas_abrir.setMinimumSize(QSize(0, 25))
+        self.btn_receitas_abrir.setMinimumSize(QSize(400, 25))
+        self.btn_receitas_abrir.setMaximumSize(QSize(400, 16777215))
+        self.btn_receitas_abrir.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_receitas_abrir.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
-"	border-radius:15px;\n"
+"	border-radius:5px;\n"
 "	color:#ffffff\n"
 "}\n"
 "\n"
 "QPushButton{\n"
-"	border-radius: 15px;\n"
+"	border-radius: 5px;\n"
 "	background-color:  rgb(162, 102, 233);\n"
 "}")
 
-        self.verticalLayout_5.addWidget(self.btn_receitas_abrir)
+        self.verticalLayout_5.addWidget(self.btn_receitas_abrir, 0, Qt.AlignHCenter)
 
         self.btn_receitas_excluir = QPushButton(self.frame_3)
         self.btn_receitas_excluir.setObjectName(u"btn_receitas_excluir")
-        self.btn_receitas_excluir.setMinimumSize(QSize(0, 25))
+        self.btn_receitas_excluir.setMinimumSize(QSize(400, 25))
+        self.btn_receitas_excluir.setMaximumSize(QSize(400, 16777215))
+        self.btn_receitas_excluir.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_receitas_excluir.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
-"	border-radius:15px;\n"
+"	border-radius:5px;\n"
 "	color:#ffffff\n"
 "}\n"
 "\n"
 "QPushButton{\n"
-"	border-radius: 15px;\n"
-"	background-color:  rgb(162, 102, 233);\n"
+"	border-radius: 5px;\n"
+"	background-color:  rgb(247, 72, 75);\n"
 "}")
 
-        self.verticalLayout_5.addWidget(self.btn_receitas_excluir)
+        self.verticalLayout_5.addWidget(self.btn_receitas_excluir, 0, Qt.AlignHCenter)
 
 
-        self.horizontalLayout_5.addWidget(self.frame_3)
-
-        self.horizontalSpacer_2 = QSpacerItem(150, 20, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_5.addItem(self.horizontalSpacer_2)
+        self.horizontalLayout_5.addWidget(self.frame_3, 0, Qt.AlignHCenter)
 
         self.pages.addWidget(self.pg_receitas)
         self.pg_criar = QWidget()
@@ -505,7 +498,7 @@ class Ui_MainWindow(object):
         self.lineEdit_nome.setEnabled(True)
         sizePolicy.setHeightForWidth(self.lineEdit_nome.sizePolicy().hasHeightForWidth())
         self.lineEdit_nome.setSizePolicy(sizePolicy)
-        self.lineEdit_nome.setMinimumSize(QSize(670, 20))
+        self.lineEdit_nome.setMinimumSize(QSize(600, 20))
         self.lineEdit_nome.setMaximumSize(QSize(16777215, 16777213))
         self.lineEdit_nome.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
 "color: #000000")
@@ -564,102 +557,59 @@ class Ui_MainWindow(object):
         self.pages.addWidget(self.pg_criar)
         self.pg_cadastrar = QWidget()
         self.pg_cadastrar.setObjectName(u"pg_cadastrar")
+        self.pg_cadastrar.setStyleSheet(u"")
         self.verticalLayout_10 = QVBoxLayout(self.pg_cadastrar)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.tabWidget = QTabWidget(self.pg_cadastrar)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setStyleSheet(u"background-color:rgb(239, 239, 239);\n"
-"color:#000000;\n"
-"QTabBar::tab:selected {\n"
-"    background: #ffffff;\n"
-"    color: #000;\n"
-"}")
+        self.tabWidget.setMinimumSize(QSize(1000, 0))
+        self.tabWidget.setMaximumSize(QSize(16777215, 16777215))
+        self.tabWidget.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.tabWidget.setStyleSheet(u"\n"
+"QTabWidget::pane { /* The pane or the area that contains the tab content */\n"
+"        border: 0px;\n"
+"    }\n"
+"\n"
+"    QTabBar::tab {\n"
+"        background: #575757;\n"
+"        color: #ffffff;\n"
+"        padding: 5px;\n"
+"        margin: 0px;\n"
+"        border: 1px solid #ccc;\n"
+"        border-radius: 5px;\n"
+"    }\n"
+"    QTabBar::tab:selected {\n"
+"        background: #a266e9;\n"
+"        color: #ffffff;\n"
+"    }")
+        self.tabWidget.setUsesScrollButtons(True)
+        self.tabWidget.setDocumentMode(False)
+        self.tabWidget.setTabsClosable(False)
+        self.tabWidget.setMovable(False)
+        self.tabWidget.setTabBarAutoHide(False)
         self.tab_1 = QWidget()
         self.tab_1.setObjectName(u"tab_1")
+        self.tab_1.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.tab_1.setStyleSheet(u"")
         self.verticalLayout_14 = QVBoxLayout(self.tab_1)
+        self.verticalLayout_14.setSpacing(6)
         self.verticalLayout_14.setObjectName(u"verticalLayout_14")
+        self.verticalLayout_14.setContentsMargins(-1, -1, -1, 9)
         self.frame = QFrame(self.tab_1)
         self.frame.setObjectName(u"frame")
+        self.frame.setStyleSheet(u"background-color: #575757;")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.gridLayout_3 = QGridLayout(self.frame)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.label_3 = QLabel(self.frame)
-        self.label_3.setObjectName(u"label_3")
+        self.gridLayout_3.setContentsMargins(-1, -1, -1, 9)
+        self.verticalSpacer_4 = QSpacerItem(20, 200, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
-        self.gridLayout_3.addWidget(self.label_3, 1, 0, 1, 1)
-
-        self.lineEdit_produto = QLineEdit(self.frame)
-        self.lineEdit_produto.setObjectName(u"lineEdit_produto")
-        self.lineEdit_produto.setMinimumSize(QSize(600, 20))
-        self.lineEdit_produto.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
-"color: #000000;\n"
-"border-radius: 5px;")
-        self.lineEdit_produto.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_3.addWidget(self.lineEdit_produto, 1, 1, 1, 2)
-
-        self.label_4 = QLabel(self.frame)
-        self.label_4.setObjectName(u"label_4")
-
-        self.gridLayout_3.addWidget(self.label_4, 2, 0, 1, 1)
-
-        self.btn_cadastrar = QPushButton(self.frame)
-        self.btn_cadastrar.setObjectName(u"btn_cadastrar")
-        self.btn_cadastrar.setMinimumSize(QSize(600, 31))
-        self.btn_cadastrar.setMaximumSize(QSize(16777215, 16777215))
-        font8 = QFont()
-        font8.setPointSize(13)
-        self.btn_cadastrar.setFont(font8)
-        self.btn_cadastrar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.btn_cadastrar.setStyleSheet(u"QPushButton:hover{\n"
-"	background-color: rgb(80, 80, 80);\n"
-"	border-radius:15px;\n"
-"	color:#ffffff\n"
-"}\n"
-"\n"
-"QPushButton{\n"
-"	border-radius: 15px;\n"
-"	background-color:  rgb(162, 102, 233);\n"
-"}")
-
-        self.gridLayout_3.addWidget(self.btn_cadastrar, 5, 1, 1, 2)
-
-        self.lineEdit_unidade = QLineEdit(self.frame)
-        self.lineEdit_unidade.setObjectName(u"lineEdit_unidade")
-        self.lineEdit_unidade.setMinimumSize(QSize(600, 20))
-        self.lineEdit_unidade.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
-"color: #000000;\n"
-"border-radius: 5px;")
-        self.lineEdit_unidade.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_3.addWidget(self.lineEdit_unidade, 2, 1, 1, 2)
-
-        self.label_5 = QLabel(self.frame)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setMaximumSize(QSize(200, 16777215))
-
-        self.gridLayout_3.addWidget(self.label_5, 3, 0, 1, 1)
-
-        self.lineEdit_quantidade = QLineEdit(self.frame)
-        self.lineEdit_quantidade.setObjectName(u"lineEdit_quantidade")
-        self.lineEdit_quantidade.setMinimumSize(QSize(600, 20))
-        self.lineEdit_quantidade.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
-"color: #000000;\n"
-"border-radius: 5px;")
-        self.lineEdit_quantidade.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout_3.addWidget(self.lineEdit_quantidade, 3, 1, 1, 2)
-
-        self.label_6 = QLabel(self.frame)
-        self.label_6.setObjectName(u"label_6")
-
-        self.gridLayout_3.addWidget(self.label_6, 4, 0, 1, 1)
+        self.gridLayout_3.addItem(self.verticalSpacer_4, 7, 1, 1, 1)
 
         self.lineEdit_valor = QLineEdit(self.frame)
         self.lineEdit_valor.setObjectName(u"lineEdit_valor")
-        self.lineEdit_valor.setMinimumSize(QSize(600, 20))
+        self.lineEdit_valor.setMinimumSize(QSize(600, 25))
         self.lineEdit_valor.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
 "color: #000000;\n"
 "border-radius: 5px;")
@@ -674,14 +624,87 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.error_label, 6, 1, 1, 2, Qt.AlignHCenter)
 
+        self.lineEdit_produto = QLineEdit(self.frame)
+        self.lineEdit_produto.setObjectName(u"lineEdit_produto")
+        self.lineEdit_produto.setMinimumSize(QSize(600, 25))
+        self.lineEdit_produto.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
+"color: #000000;\n"
+"border-radius: 5px;")
+        self.lineEdit_produto.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.lineEdit_produto, 1, 1, 1, 2)
+
+        self.label_3 = QLabel(self.frame)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout_3.addWidget(self.label_3, 1, 0, 1, 1, Qt.AlignRight)
+
+        self.label_4 = QLabel(self.frame)
+        self.label_4.setObjectName(u"label_4")
+
+        self.gridLayout_3.addWidget(self.label_4, 2, 0, 1, 1, Qt.AlignRight)
+
+        self.lineEdit_unidade = QLineEdit(self.frame)
+        self.lineEdit_unidade.setObjectName(u"lineEdit_unidade")
+        self.lineEdit_unidade.setMinimumSize(QSize(600, 25))
+        self.lineEdit_unidade.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
+"color: #000000;\n"
+"border-radius: 5px;")
+        self.lineEdit_unidade.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.lineEdit_unidade, 2, 1, 1, 2)
+
+        self.btn_cadastrar = QPushButton(self.frame)
+        self.btn_cadastrar.setObjectName(u"btn_cadastrar")
+        self.btn_cadastrar.setMinimumSize(QSize(600, 30))
+        self.btn_cadastrar.setMaximumSize(QSize(16777215, 16777215))
+        font8 = QFont()
+        font8.setPointSize(13)
+        self.btn_cadastrar.setFont(font8)
+        self.btn_cadastrar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_cadastrar.setStyleSheet(u"QPushButton:hover{\n"
+"	background-color: rgb(80, 80, 80);\n"
+"	border-radius:5px;\n"
+"	color:#ffffff\n"
+"}\n"
+"\n"
+"QPushButton{\n"
+"	border-radius: 5px;\n"
+"	background-color:  rgb(162, 102, 233);\n"
+"	color: #ffffff\n"
+"}")
+
+        self.gridLayout_3.addWidget(self.btn_cadastrar, 5, 1, 1, 2)
+
+        self.lineEdit_quantidade = QLineEdit(self.frame)
+        self.lineEdit_quantidade.setObjectName(u"lineEdit_quantidade")
+        self.lineEdit_quantidade.setMinimumSize(QSize(600, 25))
+        self.lineEdit_quantidade.setStyleSheet(u"background-color: rgb(205, 205, 205);\n"
+"color: #000000;\n"
+"border-radius: 5px;")
+        self.lineEdit_quantidade.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_3.addWidget(self.lineEdit_quantidade, 3, 1, 1, 2)
+
+        self.label_5 = QLabel(self.frame)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setMaximumSize(QSize(200, 16777215))
+
+        self.gridLayout_3.addWidget(self.label_5, 3, 0, 1, 1, Qt.AlignRight)
+
+        self.label_6 = QLabel(self.frame)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout_3.addWidget(self.label_6, 4, 0, 1, 1, Qt.AlignRight)
+
+        self.horizontalSpacer_3 = QSpacerItem(65, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_3, 1, 3, 1, 1)
+
         self.label_cadastro = QLabel(self.frame)
         self.label_cadastro.setObjectName(u"label_cadastro")
 
-        self.gridLayout_3.addWidget(self.label_cadastro, 0, 0, 1, 3, Qt.AlignTop)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 200, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-
-        self.gridLayout_3.addItem(self.verticalSpacer_4, 7, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.label_cadastro, 0, 0, 1, 4, Qt.AlignTop)
 
 
         self.verticalLayout_14.addWidget(self.frame, 0, Qt.AlignHCenter)
@@ -689,6 +712,7 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_1, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
+        self.tab_2.setCursor(QCursor(Qt.CursorShape.ArrowCursor))
         self.tab_2.setStyleSheet(u"color: #000000")
         self.verticalLayout_13 = QVBoxLayout(self.tab_2)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
@@ -721,6 +745,7 @@ class Ui_MainWindow(object):
         __qtablewidgetitem37 = QTableWidgetItem()
         self.tableWidget_produtos.setHorizontalHeaderItem(3, __qtablewidgetitem37)
         self.tableWidget_produtos.setObjectName(u"tableWidget_produtos")
+        self.tableWidget_produtos.viewport().setProperty("cursor", QCursor(Qt.CursorShape.ArrowCursor))
         self.tableWidget_produtos.setStyleSheet(u"background-color: rgb(245, 245, 245);")
 
         self.horizontalLayout_3.addWidget(self.tableWidget_produtos)
@@ -737,32 +762,37 @@ class Ui_MainWindow(object):
 
         self.btn_alterar = QPushButton(self.frame_2_tab2)
         self.btn_alterar.setObjectName(u"btn_alterar")
-        self.btn_alterar.setMinimumSize(QSize(60, 20))
+        self.btn_alterar.setMinimumSize(QSize(70, 25))
+        self.btn_alterar.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_alterar.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
-"	border-radius:15px;\n"
+"	border-radius:5px;\n"
 "	color:#ffffff\n"
 "}\n"
 "\n"
 "QPushButton{\n"
-"	border-radius: 15px;\n"
+"	border-radius: 5px;\n"
 "	background-color:  rgb(162, 102, 233);\n"
+"	color: #ffffff\n"
+"\n"
 "}")
 
         self.verticalLayout_12.addWidget(self.btn_alterar)
 
         self.btn_excluir = QPushButton(self.frame_2_tab2)
         self.btn_excluir.setObjectName(u"btn_excluir")
-        self.btn_excluir.setMinimumSize(QSize(60, 20))
+        self.btn_excluir.setMinimumSize(QSize(70, 25))
+        self.btn_excluir.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.btn_excluir.setStyleSheet(u"QPushButton:hover{\n"
 "	background-color: rgb(80, 80, 80);\n"
-"	border-radius:15px;\n"
+"	border-radius:5px;\n"
 "	color:#ffffff\n"
 "}\n"
 "\n"
 "QPushButton{\n"
-"	border-radius: 15px;\n"
-"	background-color:  rgb(162, 102, 233);\n"
+"	border-radius: 5px;\n"
+"	background-color:  rgb(247, 72, 75);;\n"
+"	color: #ffffff\n"
 "}")
 
         self.verticalLayout_12.addWidget(self.btn_excluir)
@@ -779,7 +809,7 @@ class Ui_MainWindow(object):
 
         self.tabWidget.addTab(self.tab_2, "")
 
-        self.verticalLayout_10.addWidget(self.tabWidget)
+        self.verticalLayout_10.addWidget(self.tabWidget, 0, Qt.AlignHCenter)
 
         self.pages.addWidget(self.pg_cadastrar)
 
@@ -827,7 +857,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_logo_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a266e9;\">Az</span></p></body></html>", None))
+        self.label_logo_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a266e9;\">SCCR</span></p></body></html>", None))
         self.btn_menu_home.setText(QCoreApplication.translate("MainWindow", u"Home", None))
         self.btn_menu_receitas.setText(QCoreApplication.translate("MainWindow", u"Receitas", None))
         self.btn_menu_criar.setText(QCoreApplication.translate("MainWindow", u"Criar Receita", None))
@@ -836,7 +866,6 @@ class Ui_MainWindow(object):
         self.btn_toggle_home.setText("")
         self.label_top.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Sistema para calcular o custo de receitas</p></body></html>", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a366e9;\">SCCR</span></p></body></html>", None))
-        self.label_receitas.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:14pt; color:#000000;\">SUAS RECEITAS</span></p></body></html>", None))
         ___qtablewidgetitem = self.tableWidget_receitas.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"RECEITAS", None));
         self.btn_receitas_abrir.setText(QCoreApplication.translate("MainWindow", u"ABRIR", None))
@@ -922,23 +951,23 @@ class Ui_MainWindow(object):
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"LUCRO:", None))
         self.btn_limpar.setText(QCoreApplication.translate("MainWindow", u"LIMPAR RECEITA", None))
         self.label_msg_salvo.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><br/></p></body></html>", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"PRODUTO:", None))
-        self.lineEdit_produto.setText("")
-        self.lineEdit_produto.setPlaceholderText(QCoreApplication.translate("MainWindow", u"PRODUTO", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"UNIDADE:", None))
-        self.btn_cadastrar.setText(QCoreApplication.translate("MainWindow", u"CADASTRAR", None))
-        self.lineEdit_unidade.setText("")
-        self.lineEdit_unidade.setPlaceholderText(QCoreApplication.translate("MainWindow", u"UNIDADE", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"QUANTIDADE:", None))
-        self.lineEdit_quantidade.setText("")
-        self.lineEdit_quantidade.setPlaceholderText(QCoreApplication.translate("MainWindow", u"QUANTIDADE", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"VALOR:", None))
         self.lineEdit_valor.setText("")
         self.lineEdit_valor.setPlaceholderText(QCoreApplication.translate("MainWindow", u"VALOR", None))
         self.error_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><br/></p></body></html>", None))
-        self.label_cadastro.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#2f2f2f;\">Cadastre aqui seus Produtos e Servi\u00e7os</span></p></body></html>", None))
+        self.lineEdit_produto.setText("")
+        self.lineEdit_produto.setPlaceholderText(QCoreApplication.translate("MainWindow", u"PRODUTO", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">PRODUTO:</span></p></body></html>", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">UNIDADE:</span></p></body></html>", None))
+        self.lineEdit_unidade.setText("")
+        self.lineEdit_unidade.setPlaceholderText(QCoreApplication.translate("MainWindow", u"UNIDADE", None))
+        self.btn_cadastrar.setText(QCoreApplication.translate("MainWindow", u"CADASTRAR", None))
+        self.lineEdit_quantidade.setText("")
+        self.lineEdit_quantidade.setPlaceholderText(QCoreApplication.translate("MainWindow", u"QUANTIDADE", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">QUANTIDADE:</span></p></body></html>", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#ffffff;\">VALOR:</span></p></body></html>", None))
+        self.label_cadastro.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Cadastre aqui seus Produtos e Servi\u00e7os</span></p></body></html>", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QCoreApplication.translate("MainWindow", u"Cadastro", None))
-        self.label_frame_1.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:18pt; color:#2b2b2b;\">Produtos</span></p></body></html>", None))
+        self.label_frame_1.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:18pt; color:#ffffff;\">Produtos</span></p></body></html>", None))
         ___qtablewidgetitem34 = self.tableWidget_produtos.horizontalHeaderItem(0)
         ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"PRODUTO", None));
         ___qtablewidgetitem35 = self.tableWidget_produtos.horizontalHeaderItem(1)

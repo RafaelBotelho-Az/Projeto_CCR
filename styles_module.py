@@ -8,7 +8,6 @@ def apply_styles(table_widget):
         if item is None:
             item = QTableWidgetItem()
             table_widget.setItem(row, 3, item)
-        # item.setBackground(QColor("#ebeae8"))
         item.setFlags(Qt.ItemIsSelectable)
 
     table_widget.setStyleSheet("""
@@ -26,4 +25,50 @@ def set_label_style(label):
         color: red;
         font-size: 13;
         font-weight: bold;
+    """)
+
+def table_style(table_widget):
+    table_widget.setStyleSheet("""
+
+    QTableWidget {
+        background-color: #575757;
+        color: #ffffff;
+        gridline-color: #dcdcdc;
+    }
+
+
+     QTableWidget::item:selected {
+        background-color: #a266e9;
+        color: #ffffff;
+    }
+
+    QHeaderView::section {
+        background-color: #575757;
+        color: #ffffff;
+        padding: 5px;
+    }
+
+    """)
+
+def table_style2(table_widget):
+    table_widget.setStyleSheet("""
+
+    QTableWidget {
+        background-color: #575757;
+        color: #ffffff;
+        gridline-color: #dcdcdc;
+    }
+
+
+     QTableWidget::item:selected {
+        background-color: #a266e9;
+        color: #ffffff;
+    }
+
+    QHeaderView::section {
+        background-color: #414141;
+        color: #ffffff;
+        padding: 5px;
+    }
+
     """)
