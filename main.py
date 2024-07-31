@@ -61,6 +61,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_menu_receitas.clicked.connect(self.listar_arquivos_json)
         self.btn_receitas_abrir.clicked.connect(self.reset_page)
         self.btn_receitas_abrir.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_criar))
+        self.btn_receitas_abrir.clicked.connect(self.open_receita)
         self.btn_limpar.clicked.connect(self.reset_page)
         self.btn_receitas_excluir.clicked.connect(self.del_receita)
 #######################################################################################################  FUNÇÃO HOME #########################################################################
@@ -336,13 +337,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
 
         try:
-            lucro_receita = float(self.lineEdit_lucro.text().strip())
+            lucro_receita = (self.lineEdit_lucro.text().strip())
         except ValueError:
             QMessageBox.warning(self, "Atenção", "O lucro da receita deve ser um número válido.")
             return
 
         try:
-            qtd_receita = float(self.lineEdit_qtd.text().strip())
+            qtd_receita = (self.lineEdit_qtd.text().strip())
         except ValueError:
             QMessageBox.warning(self, "Atenção", "A quantidade da receita deve ser um número válido.")
             return
@@ -444,6 +445,55 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 QMessageBox.warning(self, "Erro", f"O arquivo '{arquivo_formatado}' não foi encontrado no diretório.")
         else:
             QMessageBox.information(self, "Cancelado", "A operação de exclusão foi cancelada.")
+
+    def open_receita(self):
+        selected_items = self.tableWidget_receitas.selectedItems()
+        if not selected_items:
+            QMessageBox.warning(self, "Atenção", "Nenhum arquivo selecionado.")
+            return
+
+        arquivo_formatado = selected_items[0].text()
+        arquivo = arquivo_formatado.replace(' ', '_') + '.json'
+
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        folder_path = os.path.join(script_dir, 'receitas')
+        caminho_arquivo = os.path.join(folder_path, arquivo)
+
+        with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
+            list_dict = json.load(arquivo)
+
+        self.lineEdit_nome.setText(list_dict[0]['nome_receita'])
+        self.lineEdit_lucro.setText((list_dict[0]['lucro']))
+        self.lineEdit_qtd.setText((list_dict[0]['qtd_receita']))
+
+        for row_index, dicionario in enumerate(list_dict[1:]):
+            self.tableWidget_criar.insertRow(row_index)
+
+            combo_produto = QComboBox()
+            combo_produto.addItems(self.lista_nomes)
+            index_produto = combo_produto.findText(dicionario['produto'])
+            if index_produto != -1:
+                combo_produto.setCurrentIndex(index_produto)
+            self.tableWidget_criar.setCellWidget(row_index, 0, combo_produto)
+
+            combo_unidade = QComboBox()
+            combo_unidade.addItems(["", 'kg', 'g', 'l', 'ml', 'und' ])
+            index_unidade = combo_unidade.findText(dicionario['unidade'])
+            if index_unidade != -1:
+                combo_unidade.setCurrentIndex(index_unidade)
+            self.tableWidget_criar.setCellWidget(row_index, 1, combo_unidade)
+
+            item_quantidade = QTableWidgetItem(str(dicionario['quantidade']))
+            self.tableWidget_criar.setItem(row_index, 2, item_quantidade)
+
+        for row in range(self.tableWidget_criar.rowCount()): # seta a coluna 4 para não poder ser selecionada
+            item = self.tableWidget_criar.item(row, 3)
+            if item is None:
+                item = QTableWidgetItem()
+                self.tableWidget_criar.setItem(row, 3, item)
+            item.setFlags(Qt.ItemIsSelectable)
+
+        self.btn_calcular.click() # simula o click do botão para calcular 
 
 
 if __name__ == "__main__":
