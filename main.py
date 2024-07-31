@@ -45,6 +45,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_menu_receitas.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_receitas))
         self.btn_menu_criar.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_criar))
         self.btn_menu_cadastrar.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_cadastrar))
+        self.btn_precificar.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_precifica))
 ################  CONNECTIONS  #########################################################################
         self.btn_cadastrar.clicked.connect(self.cadastrar)
         self.tableWidget_produtos.cellClicked.connect(self.on_cell_clicked)
@@ -64,6 +65,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_receitas_abrir.clicked.connect(self.open_receita)
         self.btn_limpar.clicked.connect(self.reset_page)
         self.btn_receitas_excluir.clicked.connect(self.del_receita)
+        self.define_taxa()
+        self.comboBox_precif.currentIndexChanged.connect(self.define_taxa)
+        self.lineEdit_precf_preco.textChanged.connect(self.calcular_taxa)
+        self.comboBox_precif.currentIndexChanged.connect(self.calcular_taxa)
+        self.calcular_taxa()
 #######################################################################################################  FUNÇÃO HOME #########################################################################
     def leftMenu(self):
         width = self.left_container.width()
@@ -494,6 +500,48 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             item.setFlags(Qt.ItemIsSelectable)
 
         self.btn_calcular.click() # simula o click do botão para calcular 
+
+    def define_taxa(self):
+        if self.comboBox_precif.currentText() == 'Entrega Própria':
+            self.label_precif_taxa.setText('16.69')
+            self.label_precif_taxa_info.setText(
+                'Comissão Entrega Própria (12%) + Taxa de Pagamento Online (3,2%) + '
+                'Taxa de Antecipação de Repasse (1,49%).'
+            )
+        else:
+            self.label_precif_taxa.setText('27.69')
+            self.label_precif_taxa_info.setText(
+                'Comissão Entrega Parceira (23%) + Taxa de Pagamento Online (3,2%) + '
+                'Taxa de Antecipação de Repasse (1,49%).'
+            )
+
+    def calcular_taxa(self):
+        try:
+            texto_preco = self.lineEdit_precf_preco.text()
+
+            if texto_preco == "":
+                preco = 0
+            else:
+                preco = float(texto_preco)
+
+            taxa = float(self.label_precif_taxa.text())
+            resultado = preco * 100 / (100 - taxa)
+            resultado_formatado = "R$ {:.2f}".format(resultado)
+
+            estilo_css = """
+            font-size: 60px;
+            color: #2d2d2d;
+            font-weight: bold;
+            """
+            self.label_precif_preco_venda.setStyleSheet(estilo_css)
+
+            self.label_precif_preco_venda.setText(resultado_formatado)
+        except ValueError:
+            self.label_precif_preco_venda.setText("Erro")
+
+        self.label_precif_preco_info.setText(
+            f'Vendendo esse item por R$ {resultado_formatado} a taxa será de R$ {taxa} e '
+            f'você receberá um repasse líquido de R$ {texto_preco}.')
 
 
 if __name__ == "__main__":

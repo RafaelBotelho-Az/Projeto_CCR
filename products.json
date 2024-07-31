@@ -36,12 +36,6 @@
     "valor": 6.4
   },
   {
-    "nome": "cenoura",
-    "unidade": "g",
-    "quantidade": 100,
-    "valor": 2.5
-  },
-  {
     "nome": "embalagem",
     "unidade": "und",
     "quantidade": 1,
@@ -64,5 +58,11 @@
     "unidade": "kg",
     "quantidade": 1,
     "valor": 25.0
+  },
+  {
+    "nome": "nutella",
+    "unidade": "g",
+    "quantidade": 750,
+    "valor": 21.5
   }
 ]
