@@ -1,0 +1,22 @@
+[
+    {
+        "nome_receita": "Batata assada na marmitinha de frango",
+        "lucro": "80",
+        "qtd_receita": "1"
+    },
+    {
+        "produto": "batata",
+        "unidade": "g",
+        "quantidade": "300"
+    },
+    {
+        "produto": "recheio de frango cremoso",
+        "unidade": "g",
+        "quantidade": "140"
+    },
+    {
+        "produto": "mussarela",
+        "unidade": "g",
+        "quantidade": "60"
+    }
+]

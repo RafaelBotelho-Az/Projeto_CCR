@@ -1,0 +1,27 @@
+[
+    {
+        "nome_receita": "Recheio de Frango Cremoso",
+        "lucro": "0",
+        "qtd_receita": "1100"
+    },
+    {
+        "produto": "frango",
+        "unidade": "g",
+        "quantidade": "500"
+    },
+    {
+        "produto": "farinha de trigo",
+        "unidade": "g",
+        "quantidade": "50"
+    },
+    {
+        "produto": "leite",
+        "unidade": "ml",
+        "quantidade": "500"
+    },
+    {
+        "produto": "manteiga",
+        "unidade": "g",
+        "quantidade": "50"
+    }
+]

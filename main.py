@@ -1,7 +1,7 @@
 from PySide6 import QtCore
 from PySide6.QtCore import Qt, QTimer
 from PySide6.QtGui import QIcon, QColor
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QMessageBox, QComboBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QMessageBox, QComboBox, QTableWidget
 from ui_main import Ui_MainWindow
 from funcs import converter_unidade
 from styles_module import apply_styles, set_label_style, table_style, table_style2
@@ -19,13 +19,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        self.setWindowTitle('SCCR - Sistema para e calcular o custo de receitas')
+        self.setWindowTitle('SCCR - Sistema para Calcular o Custo de Receitas')
         appIcon = QIcon(u"")
         self.setWindowIcon(appIcon)
-        self.setFixedSize(1300, 900)
         self.lista_produtos = []
         self.load_products()
         self.lista_nomes = [item['nome'] for item in self.lista_produtos]
+        self.setFixedSize(1300, 900)
         apply_styles(self.tableWidget_criar)
         set_label_style(self.label_vt)
         set_label_style(self.label_vtl)
@@ -46,6 +46,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_menu_criar.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_criar))
         self.btn_menu_cadastrar.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_cadastrar))
         self.btn_precificar.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_precifica))
+        self.btn_sobre.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_sobre))
 ################  CONNECTIONS  #########################################################################
         self.btn_cadastrar.clicked.connect(self.cadastrar)
         self.tableWidget_produtos.cellClicked.connect(self.on_cell_clicked)
@@ -94,27 +95,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         valor = self.lineEdit_valor.text().strip().lower()
 
         if not nome or not unidade or not quantidade or not valor:
-            self.error_label.setText("Todos os campos são obrigatórios!")
-            self.error_label.setStyleSheet("color: red;")
+            QMessageBox.warning(self, "Atenção", "Todos os campos são obrigatórios!")
             return
 
         if unidade not in unidades_permitidas:
-            self.error_label.setText("UNIDADE não permitida, use: 'kg', 'g', 'l', 'ml', 'und'")
-            self.error_label.setStyleSheet("color: red;")
+            QMessageBox.warning(self, "Atenção", "UNIDADE não permitida, use: 'kg', 'g', 'l', 'ml', 'und'")
             return
 
         try:
             quantidade = int(quantidade)
         except ValueError:
-            self.error_label.setText("QUANTIDADE deve ser um número inteiro!")
-            self.error_label.setStyleSheet("color: red;")
+            QMessageBox.warning(self, "Atenção", "QUANTIDADE deve ser um número inteiro!")
             return
 
         try:
             valor = float(valor)
         except ValueError:
-            self.error_label.setText("VALOR deve ser um número decimal, por exemplo: 10.50 ou 5.20")
-            self.error_label.setStyleSheet("color: red;")
+            QMessageBox.warning(self, "Atenção", "VALOR deve ser um número inteiro ou decimal, por exemplo: 10 ou 10.50")
             return
 
         try:
@@ -134,8 +131,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.error_label.setText(f'Erro: {str(e)}')
             self.error_label.setStyleSheet("color: red;")
 
-        self.error_label.setText("Cadastrado com Sucesso!")
-        self.error_label.setStyleSheet("color: green;")
+        QMessageBox.warning(self, "Atenção", "Cadastrado com Sucesso!")
         self.coloca_na_tabela(self.lista_produtos)
         self.save_products(self.lista_produtos)
         self.load_products()
@@ -170,6 +166,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 item = QTableWidgetItem(str(value))
                 item.setTextAlignment(Qt.AlignCenter)
                 self.tableWidget_produtos.setItem(row, column, item)
+                self.tableWidget_produtos.setEditTriggers(QTableWidget.NoEditTriggers)
 
     def on_cell_clicked(self, row, column):
         self.selected_row = row  # Armazena a linha selecionada
@@ -228,12 +225,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.warning(self, "Nenhuma seleção", "Por favor, selecione uma linha para excluir.")
             return
 
-        self.tableWidget_produtos.removeRow(self.selected_row)
-        del self.lista_produtos[self.selected_row]
-        self.selected_row = -1  # Redefine a linha selecionada para -1
-        self.save_products(self.lista_produtos)
-        self.load_products()
-        self.update_comboboxes()
+        reply = QMessageBox.question(
+            self, 'Confirmação',
+            f"Tem certeza de que deseja excluir esse produto?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
+            self.tableWidget_produtos.removeRow(self.selected_row)
+            del self.lista_produtos[self.selected_row]
+            self.selected_row = -1  # Redefine a linha selecionada para -1
+            self.save_products(self.lista_produtos)
+            self.load_products()
+            self.update_comboboxes()
+        else:
+            QMessageBox.information(self, "Cancelado", "A operação de exclusão foi cancelada.")
 ################ FUNÇÕES DAS COMBO BOXES ##############################################################
     def init_comboboxes(self):
         options_col1 = ([""] + self.lista_nomes)
@@ -407,7 +413,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.tableWidget_receitas.setRowCount(len(arquivos_formatados))
         for row, arquivo in enumerate(arquivos_formatados):
             self.tableWidget_receitas.setItem(row, 0, QTableWidgetItem(arquivo))
-
+        self.tableWidget_receitas.setEditTriggers(QTableWidget.NoEditTriggers)
         return arquivos_formatados
 
     def reset_page(self):
@@ -542,7 +548,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.label_precif_preco_info.setText(
             f'Vendendo esse item por R$ {resultado_formatado} a taxa será de R$ {taxa} e '
             f'você receberá um repasse líquido de R$ {texto_preco}.')
-
 
 if __name__ == "__main__":
 

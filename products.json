@@ -13,9 +13,9 @@
   },
   {
     "nome": "manteiga",
-    "unidade": "g",
-    "quantidade": 100,
-    "valor": 1.5
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 58.5
   },
   {
     "nome": "fermento",
@@ -28,12 +28,6 @@
     "unidade": "kg",
     "quantidade": 5,
     "valor": 4.0
-  },
-  {
-    "nome": "trigo",
-    "unidade": "kg",
-    "quantidade": 1,
-    "valor": 6.4
   },
   {
     "nome": "embalagem",
@@ -51,18 +45,48 @@
     "nome": "ovos",
     "unidade": "und",
     "quantidade": 12,
-    "valor": 9.5
+    "valor": 8.5
   },
   {
     "nome": "frango",
     "unidade": "kg",
     "quantidade": 1,
-    "valor": 25.0
+    "valor": 20.0
   },
   {
     "nome": "nutella",
     "unidade": "g",
     "quantidade": 750,
     "valor": 21.5
+  },
+  {
+    "nome": "farinha de trigo",
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 5.0
+  },
+  {
+    "nome": "batata",
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 9.0
+  },
+  {
+    "nome": "mussarela",
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 45.0
+  },
+  {
+    "nome": "recheio de frango cremoso",
+    "unidade": "g",
+    "quantidade": 1100,
+    "valor": 15.88
+  },
+  {
+    "nome": "azeite",
+    "unidade": "ml",
+    "quantidade": 100,
+    "valor": 3.2
   }
 ]

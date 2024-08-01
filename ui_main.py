@@ -30,13 +30,13 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet(u"background-color: rgb(24, 24, 24);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setMinimumSize(QSize(1300, 900))
+        self.centralwidget.setMinimumSize(QSize(0, 0))
         self.centralwidget.setStyleSheet(u"*{border:none;}\n"
 "\n"
 "QLabel{color: rgb(255, 255, 255);}")
-        self.gridLayout_5 = QGridLayout(self.centralwidget)
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.gridLayout_5.setContentsMargins(0, 9, 0, -1)
+        self.horizontalLayout_4 = QHBoxLayout(self.centralwidget)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(0, 9, 0, -1)
         self.left_container = QFrame(self.centralwidget)
         self.left_container.setObjectName(u"left_container")
         self.left_container.setMinimumSize(QSize(0, 0))
@@ -179,6 +179,20 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addItem(self.verticalSpacer)
 
+        self.btn_sobre = QPushButton(self.page_1)
+        self.btn_sobre.setObjectName(u"btn_sobre")
+        self.btn_sobre.setMinimumSize(QSize(0, 30))
+        self.btn_sobre.setFont(font2)
+        self.btn_sobre.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.btn_sobre.setStyleSheet(u"QPushButton:hover{\n"
+"background-color: rgb(65, 65, 65);\n"
+"border-radius: 5px\n"
+"}\n"
+"\n"
+"QPushButton{color: rgb(255, 255, 255);}")
+
+        self.verticalLayout_8.addWidget(self.btn_sobre)
+
         self.toolBox.addItem(self.page_1, u"")
 
         self.verticalLayout_3.addWidget(self.toolBox)
@@ -187,7 +201,7 @@ class Ui_MainWindow(object):
         self.gridLayout_4.addWidget(self.botton_frame, 1, 0, 1, 1, Qt.AlignTop)
 
 
-        self.gridLayout_5.addWidget(self.left_container, 0, 0, 1, 1)
+        self.horizontalLayout_4.addWidget(self.left_container)
 
         self.right_container = QFrame(self.centralwidget)
         self.right_container.setObjectName(u"right_container")
@@ -239,9 +253,9 @@ class Ui_MainWindow(object):
         self.main_frame.setStyleSheet(u"background-color: rgb(65, 65, 65);")
         self.main_frame.setFrameShape(QFrame.StyledPanel)
         self.main_frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_6 = QVBoxLayout(self.main_frame)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(-1, 9, -1, -1)
+        self.horizontalLayout_6 = QHBoxLayout(self.main_frame)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(-1, 9, -1, -1)
         self.pages = QStackedWidget(self.main_frame)
         self.pages.setObjectName(u"pages")
         self.pages.setMinimumSize(QSize(120, 20))
@@ -503,7 +517,8 @@ class Ui_MainWindow(object):
         self.lineEdit_qtd.setSizeIncrement(QSize(0, 0))
         self.lineEdit_qtd.setBaseSize(QSize(0, 0))
         self.lineEdit_qtd.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
-"color: #000000")
+"color: #000000;\n"
+"padding-left: 5px")
 
         self.gridLayout.addWidget(self.lineEdit_qtd, 0, 5, 1, 1)
 
@@ -515,7 +530,8 @@ class Ui_MainWindow(object):
         self.lineEdit_nome.setMinimumSize(QSize(600, 20))
         self.lineEdit_nome.setMaximumSize(QSize(16777215, 16777213))
         self.lineEdit_nome.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
-"color: #000000")
+"color: #000000;\n"
+"padding-left: 5px")
 
         self.gridLayout.addWidget(self.lineEdit_nome, 0, 0, 1, 2)
 
@@ -527,7 +543,8 @@ class Ui_MainWindow(object):
         font7.setPointSize(10)
         self.lineEdit_lucro.setFont(font7)
         self.lineEdit_lucro.setStyleSheet(u"background-color: rgb(239, 239, 239);\n"
-"color: #000000")
+"color: #000000;\n"
+"padding-left: 5px")
         self.lineEdit_lucro.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.lineEdit_lucro, 0, 3, 1, 1)
@@ -759,6 +776,12 @@ class Ui_MainWindow(object):
         __qtablewidgetitem37 = QTableWidgetItem()
         self.tableWidget_produtos.setHorizontalHeaderItem(3, __qtablewidgetitem37)
         self.tableWidget_produtos.setObjectName(u"tableWidget_produtos")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.tableWidget_produtos.sizePolicy().hasHeightForWidth())
+        self.tableWidget_produtos.setSizePolicy(sizePolicy2)
+        self.tableWidget_produtos.setMinimumSize(QSize(0, 0))
         self.tableWidget_produtos.viewport().setProperty("cursor", QCursor(Qt.CursorShape.ArrowCursor))
         self.tableWidget_produtos.setStyleSheet(u"background-color: rgb(245, 245, 245);")
 
@@ -766,6 +789,8 @@ class Ui_MainWindow(object):
 
         self.frame_2_tab2 = QFrame(self.tab_2)
         self.frame_2_tab2.setObjectName(u"frame_2_tab2")
+        self.frame_2_tab2.setMinimumSize(QSize(0, 0))
+        self.frame_2_tab2.setMaximumSize(QSize(100, 16777215))
         self.frame_2_tab2.setFrameShape(QFrame.StyledPanel)
         self.frame_2_tab2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.frame_2_tab2)
@@ -836,8 +861,7 @@ class Ui_MainWindow(object):
 
         self.frame_4 = QFrame(self.pg_precifica)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setStyleSheet(u"\n"
-"background: #575757;\n"
+        self.frame_4.setStyleSheet(u"background: #575757;\n"
 "border-radius: 5px")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
@@ -1011,8 +1035,65 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addItem(self.horizontalSpacer_2)
 
         self.pages.addWidget(self.pg_precifica)
+        self.pg_sobre = QWidget()
+        self.pg_sobre.setObjectName(u"pg_sobre")
+        self.horizontalLayout_7 = QHBoxLayout(self.pg_sobre)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.verticalLayout_6.addWidget(self.pages)
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_6)
+
+        self.frame_5 = QFrame(self.pg_sobre)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setMaximumSize(QSize(16777215, 400))
+        self.frame_5.setStyleSheet(u"background: #575757;\n"
+"border-radius: 12px")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+        self.verticalLayout = QVBoxLayout(self.frame_5)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalSpacer_10 = QSpacerItem(20, 112, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer_10)
+
+        self.label_11 = QLabel(self.frame_5)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setFont(font8)
+
+        self.verticalLayout.addWidget(self.label_11)
+
+        self.label_14 = QLabel(self.frame_5)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setFont(font8)
+
+        self.verticalLayout.addWidget(self.label_14, 0, Qt.AlignHCenter)
+
+        self.label_18 = QLabel(self.frame_5)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setFont(font8)
+
+        self.verticalLayout.addWidget(self.label_18, 0, Qt.AlignHCenter)
+
+        self.label_13 = QLabel(self.frame_5)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setFont(font8)
+
+        self.verticalLayout.addWidget(self.label_13, 0, Qt.AlignHCenter)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer_9)
+
+
+        self.horizontalLayout_7.addWidget(self.frame_5)
+
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.horizontalSpacer_7)
+
+        self.pages.addWidget(self.pg_sobre)
+
+        self.horizontalLayout_6.addWidget(self.pages)
 
 
         self.verticalLayout_4.addWidget(self.main_frame)
@@ -1039,7 +1120,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.frame_2)
 
 
-        self.gridLayout_5.addWidget(self.right_container, 0, 1, 1, 1)
+        self.horizontalLayout_4.addWidget(self.right_container)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -1062,9 +1143,10 @@ class Ui_MainWindow(object):
         self.btn_menu_criar.setText(QCoreApplication.translate("MainWindow", u"Criar Receita", None))
         self.btn_menu_cadastrar.setText(QCoreApplication.translate("MainWindow", u"Cadastrar", None))
         self.btn_precificar.setText(QCoreApplication.translate("MainWindow", u"Precificar iFood", None))
+        self.btn_sobre.setText(QCoreApplication.translate("MainWindow", u"Sobre", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_1), "")
         self.btn_toggle_home.setText("")
-        self.label_top.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Sistema para calcular o custo de receitas</p></body></html>", None))
+        self.label_top.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\">Sistema para Calcular o Custo de Receitas</p></body></html>", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" color:#a366e9;\">SCCR</span></p></body></html>", None))
         ___qtablewidgetitem = self.tableWidget_receitas.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"RECEITAS", None));
@@ -1194,6 +1276,10 @@ class Ui_MainWindow(object):
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600;\">%</span></p></body></html>", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:600;\">R$</span></p></body></html>", None))
         self.label_precif_taxa.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"SCCR - Sistema para Calcular o Custo de Receitas", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Desenvolvido por: Rafael Botelho", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Contato: rafaelbotelho@live.com", None))
+        self.label_13.setText(QCoreApplication.translate("MainWindow", u"Vers\u00e3o: 1.0.0", None))
         self.label_dev.setText(QCoreApplication.translate("MainWindow", u"Desenvolvido por: Rafael Botelho - Az", None))
     # retranslateUi
 
