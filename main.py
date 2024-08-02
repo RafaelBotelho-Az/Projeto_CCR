@@ -20,8 +20,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.setWindowTitle('SCCR - Sistema para Calcular o Custo de Receitas')
-        appIcon = QIcon(u"")
-        self.setWindowIcon(appIcon)
         self.lista_produtos = []
         self.load_products()
         self.lista_nomes = [item['nome'] for item in self.lista_produtos]
@@ -348,23 +346,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             QMessageBox.warning(self, "Atenção", "O nome da receita não pode estar vazio.")
             return
 
-        try:
-            lucro_receita = (self.lineEdit_lucro.text().strip())
-        except ValueError:
+        lucro_receita = self.lineEdit_lucro.text().strip()
+        if not lucro_receita:
             QMessageBox.warning(self, "Atenção", "O lucro da receita deve ser um número válido.")
             return
 
-        try:
-            qtd_receita = (self.lineEdit_qtd.text().strip())
-        except ValueError:
-            QMessageBox.warning(self, "Atenção", "A quantidade da receita deve ser um número válido.")
+        qtd_receita = self.lineEdit_qtd.text().strip()
+        if not qtd_receita:
+            QMessageBox.warning(self, "Atenção", "A quantidade da receita deve ser um número válida.")
             return
 
-        # Cria o dicionário principal da receita
         receita_core = {'nome_receita': nom_receita, 'lucro': lucro_receita, 'qtd_receita': qtd_receita}
         self.lista_receita.append(receita_core)
 
-        # Processa os itens da QTableWidget
         rows = self.tableWidget_criar.rowCount()
         keys = ['produto', 'unidade', 'quantidade']
 
@@ -385,10 +379,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.lista_receita.append(item_dict)
 
         file_name = nom_receita.replace(' ', '_') + '.json'
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        folder_path = os.path.join(script_dir, 'receitas')
+
+        user_documents_path = os.path.expanduser("~/Documents")
+        folder_path = os.path.join(user_documents_path, 'receitas')
+
         if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
+            try:
+                os.makedirs(folder_path)
+            except Exception as e:
+                QMessageBox.critical(self, "Erro", f"Erro ao criar pasta: {e}")
+                return
+
         file_path = os.path.join(folder_path, file_name)
 
         try:
@@ -399,17 +400,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             self.label_msg_salvo.setText(f'Não foi possível salvar a receita: {e}')
             self.label_msg_salvo.setStyleSheet("color: red; font-weight: bold;")
+            QMessageBox.critical(self, "Erro", f"Não foi possível salvar a receita: {e}")
 
     def listar_arquivos_json(self, diretorio):
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        folder_path = os.path.join(script_dir, 'receitas')
+        user_documents_path = os.path.expanduser("~/Documents")
+        folder_path = os.path.join(user_documents_path, 'receitas')
         diretorio = folder_path
+
+        if not os.path.isdir(diretorio):
+            QMessageBox.warning(self, "Erro", f"O diretório '{diretorio}' não foi encontrado.")
+            return []
 
         all_files = os.listdir(diretorio)
         arquivos_json = [arquivo for arquivo in all_files if arquivo.endswith('.json')]
         arquivos_formatados = [arquivo[:-5].replace('_', ' ') for arquivo in arquivos_json]
 
-        # Adiciona a lista de arquivos na QTableWidget
         self.tableWidget_receitas.setRowCount(len(arquivos_formatados))
         for row, arquivo in enumerate(arquivos_formatados):
             self.tableWidget_receitas.setItem(row, 0, QTableWidgetItem(arquivo))
@@ -436,11 +441,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         arquivo_formatado = selected_items[0].text()
         arquivo = arquivo_formatado.replace(' ', '_') + '.json'
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        folder_path = os.path.join(script_dir, 'receitas')
+        user_documents_path = os.path.expanduser("~/Documents")
+        folder_path = os.path.join(user_documents_path, 'receitas')
         caminho_arquivo = os.path.join(folder_path, arquivo)
 
-        # Exibe uma caixa de diálogo de confirmação
         reply = QMessageBox.question(
             self, 'Confirmação',
             f"Tem certeza de que deseja deletar a receita '{arquivo_formatado}'?",
@@ -450,9 +454,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         if reply == QMessageBox.Yes:
             if os.path.exists(caminho_arquivo):
-                os.remove(caminho_arquivo)
-                self.tableWidget_receitas.removeRow(selected_items[0].row())
-                QMessageBox.information(self, "Sucesso", f"A receita '{arquivo_formatado}' foi deletada.")
+                try:
+                    os.remove(caminho_arquivo)
+                    self.tableWidget_receitas.removeRow(selected_items[0].row())
+                    QMessageBox.information(self, "Sucesso", f"A receita '{arquivo_formatado}' foi deletada.")
+                except Exception as e:
+                    QMessageBox.critical(self, "Erro", f"Não foi possível deletar o arquivo: {e}")
             else:
                 QMessageBox.warning(self, "Erro", f"O arquivo '{arquivo_formatado}' não foi encontrado no diretório.")
         else:
@@ -467,45 +474,55 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         arquivo_formatado = selected_items[0].text()
         arquivo = arquivo_formatado.replace(' ', '_') + '.json'
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        folder_path = os.path.join(script_dir, 'receitas')
+        user_documents_path = os.path.expanduser("~/Documents")
+        folder_path = os.path.join(user_documents_path, 'receitas')
         caminho_arquivo = os.path.join(folder_path, arquivo)
 
-        with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
-            list_dict = json.load(arquivo)
+        if not os.path.exists(caminho_arquivo):
+            QMessageBox.warning(self, "Erro", f"Arquivo {arquivo} não encontrado.")
+            return
+        
+        try:
+            with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
+                list_dict = json.load(arquivo)
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Não foi possível abrir o arquivo: {e}")
+            return
 
-        self.lineEdit_nome.setText(list_dict[0]['nome_receita'])
-        self.lineEdit_lucro.setText((list_dict[0]['lucro']))
-        self.lineEdit_qtd.setText((list_dict[0]['qtd_receita']))
+        if list_dict:
+            self.lineEdit_nome.setText(list_dict[0].get('nome_receita', ''))
+            self.lineEdit_lucro.setText(list_dict[0].get('lucro', ''))
+            self.lineEdit_qtd.setText(list_dict[0].get('qtd_receita', ''))
 
-        for row_index, dicionario in enumerate(list_dict[1:]):
-            self.tableWidget_criar.insertRow(row_index)
+            for row_index, dicionario in enumerate(list_dict[1:]):
+                self.tableWidget_criar.insertRow(row_index)
 
-            combo_produto = QComboBox()
-            combo_produto.addItems(self.lista_nomes)
-            index_produto = combo_produto.findText(dicionario['produto'])
-            if index_produto != -1:
-                combo_produto.setCurrentIndex(index_produto)
-            self.tableWidget_criar.setCellWidget(row_index, 0, combo_produto)
+                combo_produto = QComboBox()
+                combo_produto.addItems(self.lista_nomes)
+                index_produto = combo_produto.findText(dicionario.get('produto', ''))
+                if index_produto != -1:
+                    combo_produto.setCurrentIndex(index_produto)
+                self.tableWidget_criar.setCellWidget(row_index, 0, combo_produto)
 
-            combo_unidade = QComboBox()
-            combo_unidade.addItems(["", 'kg', 'g', 'l', 'ml', 'und' ])
-            index_unidade = combo_unidade.findText(dicionario['unidade'])
-            if index_unidade != -1:
-                combo_unidade.setCurrentIndex(index_unidade)
-            self.tableWidget_criar.setCellWidget(row_index, 1, combo_unidade)
+                combo_unidade = QComboBox()
+                combo_unidade.addItems(["", 'kg', 'g', 'l', 'ml', 'und'])
+                index_unidade = combo_unidade.findText(dicionario.get('unidade', ''))
+                if index_unidade != -1:
+                    combo_unidade.setCurrentIndex(index_unidade)
+                self.tableWidget_criar.setCellWidget(row_index, 1, combo_unidade)
 
-            item_quantidade = QTableWidgetItem(str(dicionario['quantidade']))
-            self.tableWidget_criar.setItem(row_index, 2, item_quantidade)
+                item_quantidade = QTableWidgetItem(str(dicionario.get('quantidade', '')))
+                self.tableWidget_criar.setItem(row_index, 2, item_quantidade)
 
-        for row in range(self.tableWidget_criar.rowCount()): # seta a coluna 4 para não poder ser selecionada
-            item = self.tableWidget_criar.item(row, 3)
-            if item is None:
-                item = QTableWidgetItem()
-                self.tableWidget_criar.setItem(row, 3, item)
-            item.setFlags(Qt.ItemIsSelectable)
+            # Ajusta a coluna 4 para não poder ser selecionada
+            for row in range(self.tableWidget_criar.rowCount()):
+                item = self.tableWidget_criar.item(row, 3)
+                if item is None:
+                    item = QTableWidgetItem()
+                    self.tableWidget_criar.setItem(row, 3, item)
+                item.setFlags(Qt.ItemIsSelectable)
 
-        self.btn_calcular.click() # simula o click do botão para calcular 
+            self.btn_calcular.click()  # Simula o clique do botão para calcular
 
     def define_taxa(self):
         if self.comboBox_precif.currentText() == 'Entrega Própria':
@@ -553,5 +570,11 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     window = MainWindow()
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    icon_path = os.path.join(current_dir, "icons", "icone.ico")
+    app.setWindowIcon(QIcon(icon_path))
+
+
     window.show()
-    app.exec()
+    sys.exit(app.exec())
