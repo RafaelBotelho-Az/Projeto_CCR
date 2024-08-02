@@ -23,7 +23,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lista_produtos = []
         self.load_products()
         self.lista_nomes = [item['nome'] for item in self.lista_produtos]
-        self.setFixedSize(1300, 900)
+        self.setFixedSize(900, 700)
         apply_styles(self.tableWidget_criar)
         set_label_style(self.label_vt)
         set_label_style(self.label_vtl)
@@ -31,13 +31,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         table_style(self.tableWidget_receitas)
         table_style2(self.tableWidget_produtos)
 
-        self.tableWidget_receitas.setColumnWidth(0, 758)
-        self.tableWidget_criar.setColumnWidth(0, 604)
-        self.tableWidget_criar.setColumnWidth(2, 120)
-        self.tableWidget_criar.setColumnWidth(3, 130)
-        self.tableWidget_produtos.setColumnWidth(0, 500)
-        self.tableWidget_produtos.setColumnWidth(2, 115)
-        self.tableWidget_produtos.setColumnWidth(3, 140)
+        self.tableWidget_receitas.setColumnWidth(0, 558)
+        self.tableWidget_criar.setColumnWidth(0, 435)
+        self.tableWidget_criar.setColumnWidth(1, 67)
+        self.tableWidget_criar.setColumnWidth(2, 90)
+        self.tableWidget_criar.setColumnWidth(3, 60)
+        self.tableWidget_produtos.setColumnWidth(0, 330)
+        self.tableWidget_produtos.setColumnWidth(1, 67)
+        self.tableWidget_produtos.setColumnWidth(2, 90)
+        self.tableWidget_produtos.setColumnWidth(3, 60)
 ################  PAGINAS  #############################################################################
         self.btn_menu_home.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_home))
         self.btn_menu_receitas.clicked.connect(lambda: self.pages.setCurrentWidget(self.pg_receitas))
@@ -74,7 +76,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         width = self.left_container.width()
 
         if width == 0:
-            newWidth = 250
+            newWidth = 150
         else:
             newWidth = 0
         self.animation = QtCore.QPropertyAnimation(self.left_container, b"maximumWidth")
@@ -407,9 +409,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         folder_path = os.path.join(user_documents_path, 'receitas')
         diretorio = folder_path
 
-        if not os.path.isdir(diretorio):
-            QMessageBox.warning(self, "Erro", f"O diretório '{diretorio}' não foi encontrado.")
-            return []
+        if not os.path.exists(folder_path):
+            try:
+                os.makedirs(folder_path)
+            except Exception as e:
+                QMessageBox.critical(self, "Erro", f"Erro ao criar pasta: {e}")
+                return
 
         all_files = os.listdir(diretorio)
         arquivos_json = [arquivo for arquivo in all_files if arquivo.endswith('.json')]
@@ -527,16 +532,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def define_taxa(self):
         if self.comboBox_precif.currentText() == 'Entrega Própria':
             self.label_precif_taxa.setText('16.69')
-            self.label_precif_taxa_info.setText(
-                'Comissão Entrega Própria (12%) + Taxa de Pagamento Online (3,2%) + '
-                'Taxa de Antecipação de Repasse (1,49%).'
-            )
+            self.label_precif_taxa_info_1.setText(
+                'Comissão Entrega Própria (12%) + Taxa de Pagamento Online (3,2%) +')
+            self.label_precif_taxa_info_2.setText(
+                'Taxa de Antecipação de Repasse (1,49%).')
         else:
             self.label_precif_taxa.setText('27.69')
-            self.label_precif_taxa_info.setText(
-                'Comissão Entrega Parceira (23%) + Taxa de Pagamento Online (3,2%) + '
-                'Taxa de Antecipação de Repasse (1,49%).'
-            )
+            self.label_precif_taxa_info_1.setText(
+                'Comissão Entrega Parceira (23%) + Taxa de Pagamento Online (3,2%) +')
+            self.label_precif_taxa_info_2.setText(
+                'Taxa de Antecipação de Repasse (1,49%).')
 
     def calcular_taxa(self):
         try:
@@ -562,9 +567,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except ValueError:
             self.label_precif_preco_venda.setText("Erro")
 
-        self.label_precif_preco_info.setText(
-            f'Vendendo esse item por R$ {resultado_formatado} a taxa será de R$ {taxa} e '
+        self.label_precif_preco_info_1.setText(
+            f'Vendendo esse item por R$ {resultado_formatado} a taxa será de R$ {taxa}')
+        self.label_precif_preco_info_2.setText(
             f'você receberá um repasse líquido de R$ {texto_preco}.')
+
 
 if __name__ == "__main__":
 
