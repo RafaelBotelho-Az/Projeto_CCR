@@ -12,10 +12,18 @@ def apply_styles(table_widget):
 
     table_widget.setStyleSheet("""
         QTableWidget::item:selected {
-            background-color: #a266e9;  /* Cor de fundo quando o item está selecionado */
-        }
+            background-color: #a266e9; 
+}
         QTableWidget {
+            color: #ffffff;
             border: 1px solid #CCCCCC;
+            background-color: #575757;
+}
+        QHeaderView::section {
+            background-color: #575757;
+            color: #ffffff;
+}
+        QTableWidget QTableCornerButton::section {
             background-color: #575757;
 }
     """)
@@ -45,30 +53,8 @@ def table_style(table_widget):
     QHeaderView::section {
         background-color: #575757;
         color: #ffffff;
-        padding: 5px;
     }
-
-    """)
-
-def table_style2(table_widget):
-    table_widget.setStyleSheet("""
-
-    QTableWidget {
+    QTableWidget QTableCornerButton::section {
         background-color: #575757;
-        color: #ffffff;
-        gridline-color: #dcdcdc;
     }
-
-
-     QTableWidget::item:selected {
-        background-color: #a266e9;
-        color: #ffffff;
-    }
-
-    QHeaderView::section {
-        background-color: #414141;
-        color: #ffffff;
-        padding: 5px;
-    }
-
     """)

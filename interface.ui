@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>700</height>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -634,6 +634,7 @@ color:#000000</string>
 QPushButton{
 	border-radius: 5px;
 	background-color:  rgb(162, 102, 233);
+	color:#ffffff
 }</string>
                    </property>
                    <property name="text">
@@ -668,6 +669,7 @@ QPushButton{
 QPushButton{
 	border-radius: 5px;
 	background-color:  rgb(247, 72, 75);
+	color:#ffffff
 }</string>
                    </property>
                    <property name="text">
@@ -1079,6 +1081,7 @@ color: #000000</string>
 QPushButton{
 	border-radius: 5px;
 	background-color:  rgb(162, 102, 233);
+	color:#ffffff
 }</string>
                 </property>
                 <property name="text">
@@ -1152,6 +1155,7 @@ QPushButton{
 QPushButton{
 	border-radius: 5px;
 	background-color:  rgb(162, 102, 233);
+	color:#ffffff
 }</string>
                 </property>
                 <property name="text">
@@ -1219,6 +1223,7 @@ QPushButton{
 QPushButton{
 	border-radius: 5px;
 	background-color:  rgb(247, 72, 75);
+	color:#ffffff
 }
 
 </string>
@@ -1824,7 +1829,7 @@ color: #ffffff</string>
                    <property name="minimumSize">
                     <size>
                      <width>47</width>
-                     <height>58</height>
+                     <height>50</height>
                     </size>
                    </property>
                    <property name="maximumSize">
@@ -1847,7 +1852,7 @@ color:#ffffff;</string>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>58</height>
+                     <height>50</height>
                     </size>
                    </property>
                    <property name="font">
@@ -2006,7 +2011,7 @@ color: #ffffff</string>
                    <property name="minimumSize">
                     <size>
                      <width>47</width>
-                     <height>58</height>
+                     <height>50</height>
                     </size>
                    </property>
                    <property name="maximumSize">
@@ -2029,7 +2034,7 @@ color:#ffffff;</string>
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
-                     <height>58</height>
+                     <height>50</height>
                     </size>
                    </property>
                    <property name="font">
@@ -2091,7 +2096,9 @@ padding-left: 10px</string>
                   <widget class="QLabel" name="label_12">
                    <property name="font">
                     <font>
-                     <pointsize>20</pointsize>
+                     <pointsize>16</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
                     </font>
                    </property>
                    <property name="styleSheet">
@@ -2113,7 +2120,7 @@ color: #ffffff</string>
                    </property>
                    <property name="font">
                     <font>
-                     <pointsize>22</pointsize>
+                     <pointsize>20</pointsize>
                      <weight>75</weight>
                      <bold>true</bold>
                     </font>

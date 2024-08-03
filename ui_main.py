@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(900, 700)
+        MainWindow.resize(900, 680)
         MainWindow.setStyleSheet(u"background-color: rgb(24, 24, 24);")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -323,6 +323,7 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	border-radius: 5px;\n"
 "	background-color:  rgb(162, 102, 233);\n"
+"	color:#ffffff\n"
 "}")
 
         self.verticalLayout_5.addWidget(self.btn_receitas_abrir, 0, Qt.AlignHCenter)
@@ -341,6 +342,7 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	border-radius: 5px;\n"
 "	background-color:  rgb(247, 72, 75);\n"
+"	color:#ffffff\n"
 "}")
 
         self.verticalLayout_5.addWidget(self.btn_receitas_excluir, 0, Qt.AlignHCenter)
@@ -527,6 +529,7 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	border-radius: 5px;\n"
 "	background-color:  rgb(162, 102, 233);\n"
+"	color:#ffffff\n"
 "}")
 
         self.gridLayout_5.addWidget(self.btn_salvar_receita, 2, 5, 1, 1)
@@ -559,6 +562,7 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	border-radius: 5px;\n"
 "	background-color:  rgb(162, 102, 233);\n"
+"	color:#ffffff\n"
 "}")
 
         self.gridLayout_5.addWidget(self.btn_calcular, 3, 5, 1, 1)
@@ -590,6 +594,7 @@ class Ui_MainWindow(object):
 "QPushButton{\n"
 "	border-radius: 5px;\n"
 "	background-color:  rgb(247, 72, 75);\n"
+"	color:#ffffff\n"
 "}\n"
 "\n"
 "")
@@ -893,7 +898,7 @@ class Ui_MainWindow(object):
 
         self.label_17 = QLabel(self.frame_4)
         self.label_17.setObjectName(u"label_17")
-        self.label_17.setMinimumSize(QSize(47, 58))
+        self.label_17.setMinimumSize(QSize(47, 50))
         self.label_17.setMaximumSize(QSize(16777215, 16777215))
         self.label_17.setStyleSheet(u"background-color: rgb(180, 180, 180);\n"
 "color:#ffffff;")
@@ -902,7 +907,7 @@ class Ui_MainWindow(object):
 
         self.lineEdit_precf_preco = QLineEdit(self.frame_4)
         self.lineEdit_precf_preco.setObjectName(u"lineEdit_precf_preco")
-        self.lineEdit_precf_preco.setMinimumSize(QSize(0, 58))
+        self.lineEdit_precf_preco.setMinimumSize(QSize(0, 50))
         font9 = QFont()
         font9.setPointSize(18)
         font9.setBold(False)
@@ -973,7 +978,7 @@ class Ui_MainWindow(object):
 
         self.label_16 = QLabel(self.frame_4)
         self.label_16.setObjectName(u"label_16")
-        self.label_16.setMinimumSize(QSize(47, 58))
+        self.label_16.setMinimumSize(QSize(47, 50))
         self.label_16.setMaximumSize(QSize(16777215, 16777215))
         self.label_16.setStyleSheet(u"background-color: rgb(180, 180, 180);\n"
 "color:#ffffff;")
@@ -982,7 +987,7 @@ class Ui_MainWindow(object):
 
         self.label_precif_taxa = QLabel(self.frame_4)
         self.label_precif_taxa.setObjectName(u"label_precif_taxa")
-        self.label_precif_taxa.setMinimumSize(QSize(0, 58))
+        self.label_precif_taxa.setMinimumSize(QSize(0, 50))
         font12 = QFont()
         font12.setPointSize(18)
         self.label_precif_taxa.setFont(font12)
@@ -1011,7 +1016,8 @@ class Ui_MainWindow(object):
         self.label_12 = QLabel(self.frame_4)
         self.label_12.setObjectName(u"label_12")
         font13 = QFont()
-        font13.setPointSize(20)
+        font13.setPointSize(16)
+        font13.setBold(True)
         self.label_12.setFont(font13)
         self.label_12.setStyleSheet(u"background-color: #575757;\n"
 "color: #ffffff")
@@ -1022,7 +1028,7 @@ class Ui_MainWindow(object):
         self.label_precif_preco_venda.setObjectName(u"label_precif_preco_venda")
         self.label_precif_preco_venda.setMinimumSize(QSize(0, 60))
         font14 = QFont()
-        font14.setPointSize(22)
+        font14.setPointSize(20)
         font14.setBold(True)
         self.label_precif_preco_venda.setFont(font14)
         self.label_precif_preco_venda.setStyleSheet(u"background-color: #575757;\n"

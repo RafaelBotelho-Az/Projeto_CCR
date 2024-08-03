@@ -4,7 +4,7 @@ from PySide6.QtGui import QIcon, QColor
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QMessageBox, QComboBox, QTableWidget
 from ui_main import Ui_MainWindow
 from funcs import converter_unidade
-from styles_module import apply_styles, set_label_style, table_style, table_style2
+from styles_module import apply_styles, set_label_style, table_style
 import sys, json, os
 
 class NoScrollComboBox(QComboBox):
@@ -23,16 +23,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lista_produtos = []
         self.load_products()
         self.lista_nomes = [item['nome'] for item in self.lista_produtos]
-        self.setFixedSize(900, 700)
+        self.setFixedSize(950, 660)
         apply_styles(self.tableWidget_criar)
         set_label_style(self.label_vt)
         set_label_style(self.label_vtl)
         set_label_style(self.label_vu)
         table_style(self.tableWidget_receitas)
-        table_style2(self.tableWidget_produtos)
+        table_style(self.tableWidget_produtos)
 
         self.tableWidget_receitas.setColumnWidth(0, 558)
-        self.tableWidget_criar.setColumnWidth(0, 435)
+        self.tableWidget_criar.setColumnWidth(0, 475)
         self.tableWidget_criar.setColumnWidth(1, 67)
         self.tableWidget_criar.setColumnWidth(2, 90)
         self.tableWidget_criar.setColumnWidth(3, 60)
@@ -248,12 +248,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         for row in range(self.tableWidget_criar.rowCount()):
             combobox_col1 = NoScrollComboBox()
+            combobox_col1.setStyleSheet("QComboBox {color: #ffffff;}QAbstractItemView {color: #ffffff;}")
             combobox_col1.addItems(options_col1)
             self.tableWidget_criar.setCellWidget(row, 0, combobox_col1)
             self.tableWidget_criar.setItem(row, 0, QTableWidgetItem(""))
             self.tableWidget_criar.item(row, 0).setTextAlignment(Qt.AlignCenter)
 
             combobox_col2 = NoScrollComboBox()
+            combobox_col2.setStyleSheet("QComboBox {color: #ffffff;}QAbstractItemView {color: #ffffff;}")
             combobox_col2.addItems(options_col2)
             self.tableWidget_criar.setCellWidget(row, 1, combobox_col2)
             self.tableWidget_criar.setItem(row, 1, QTableWidgetItem(""))
@@ -502,14 +504,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             for row_index, dicionario in enumerate(list_dict[1:]):
                 self.tableWidget_criar.insertRow(row_index)
 
-                combo_produto = QComboBox()
+                combo_produto = NoScrollComboBox()
+                combo_produto.setStyleSheet("QComboBox {color: #ffffff;}QAbstractItemView {color: #ffffff;}")
                 combo_produto.addItems(self.lista_nomes)
                 index_produto = combo_produto.findText(dicionario.get('produto', ''))
                 if index_produto != -1:
                     combo_produto.setCurrentIndex(index_produto)
                 self.tableWidget_criar.setCellWidget(row_index, 0, combo_produto)
 
-                combo_unidade = QComboBox()
+                combo_unidade = NoScrollComboBox()
+                combo_unidade.setStyleSheet("QComboBox {color: #ffffff;}QAbstractItemView {color: #ffffff;}")
                 combo_unidade.addItems(["", 'kg', 'g', 'l', 'ml', 'und'])
                 index_unidade = combo_unidade.findText(dicionario.get('unidade', ''))
                 if index_unidade != -1:
@@ -576,6 +580,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
+    app.setStyleSheet("""
+    QMessageBox {
+        background-color: #333;
+        color: #a266e9;
+    }
+
+    QMessageBox QLabel {
+        color: white;
+    }
+
+    QMessageBox QPushButton {
+        color: white;
+        background-color: #007bff;
+        border: 1px solid #0056b3;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    QMessageBox QPushButton:hover {
+        background-color: #0056b3;
+    }
+
+    QMessageBox QPushButton:pressed {
+        background-color: #003f7f;
+    }
+""")
     window = MainWindow()
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
