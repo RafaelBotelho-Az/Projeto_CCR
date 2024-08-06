@@ -121,6 +121,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 'quantidade': quantidade,
                 'valor': valor
             })
+
+            self.lista_produtos.sort(key=lambda x: x['nome'])
+
             self.lineEdit_produto.clear()
             self.lineEdit_unidade.clear()
             self.lineEdit_quantidade.clear()
@@ -535,17 +538,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def define_taxa(self):
         if self.comboBox_precif.currentText() == 'Entrega Própria':
-            self.label_precif_taxa.setText('16.69')
+            self.label_precif_taxa.setText('15.2')
             self.label_precif_taxa_info_1.setText(
-                'Comissão Entrega Própria (12%) + Taxa de Pagamento Online (3,2%) +')
+                'Comissão Entrega Própria (12%) + Taxa de Pagamento Online (3,2%)')
             self.label_precif_taxa_info_2.setText(
-                'Taxa de Antecipação de Repasse (1,49%).')
+                '')
         else:
-            self.label_precif_taxa.setText('27.69')
+            self.label_precif_taxa.setText('26.2')
             self.label_precif_taxa_info_1.setText(
-                'Comissão Entrega Parceira (23%) + Taxa de Pagamento Online (3,2%) +')
+                'Comissão Entrega Parceira (23%) + Taxa de Pagamento Online (3,2%)')
             self.label_precif_taxa_info_2.setText(
-                'Taxa de Antecipação de Repasse (1,49%).')
+                '')
 
     def calcular_taxa(self):
         try:
@@ -604,6 +607,21 @@ if __name__ == "__main__":
 
     QMessageBox QPushButton:pressed {
         background-color: #003f7f;
+    }
+                      
+    QInputDialog QLabel {
+        color: white;
+    }
+                      
+    QInputDialog QLineEdit {
+        color: white;
+    }
+                      
+    QInputDialog QPushButton {
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 5px;
     }
 """)
     window = MainWindow()

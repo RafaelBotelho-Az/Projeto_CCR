@@ -1,27 +1,9 @@
 [
   {
-    "nome": "leite",
-    "unidade": "l",
-    "quantidade": 1,
-    "valor": 5.4
-  },
-  {
-    "nome": "chocolate",
-    "unidade": "g",
-    "quantidade": 200,
-    "valor": 4.5
-  },
-  {
-    "nome": "manteiga",
-    "unidade": "kg",
-    "quantidade": 1,
-    "valor": 58.5
-  },
-  {
-    "nome": "fermento",
-    "unidade": "g",
-    "quantidade": 400,
-    "valor": 3.4
+    "nome": "azeite",
+    "unidade": "ml",
+    "quantidade": 100,
+    "valor": 3.2
   },
   {
     "nome": "açucar",
@@ -30,34 +12,22 @@
     "valor": 4.0
   },
   {
+    "nome": "batata",
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 9.0
+  },
+  {
+    "nome": "chocolate",
+    "unidade": "g",
+    "quantidade": 200,
+    "valor": 4.5
+  },
+  {
     "nome": "embalagem",
     "unidade": "und",
     "quantidade": 1,
     "valor": 14.5
-  },
-  {
-    "nome": "leite ninho",
-    "unidade": "g",
-    "quantidade": 100,
-    "valor": 2.5
-  },
-  {
-    "nome": "ovos",
-    "unidade": "und",
-    "quantidade": 12,
-    "valor": 8.5
-  },
-  {
-    "nome": "frango",
-    "unidade": "kg",
-    "quantidade": 1,
-    "valor": 20.0
-  },
-  {
-    "nome": "nutella",
-    "unidade": "g",
-    "quantidade": 750,
-    "valor": 21.5
   },
   {
     "nome": "farinha de trigo",
@@ -66,10 +36,34 @@
     "valor": 5.0
   },
   {
-    "nome": "batata",
+    "nome": "fermento",
+    "unidade": "g",
+    "quantidade": 400,
+    "valor": 3.4
+  },
+  {
+    "nome": "frango",
     "unidade": "kg",
     "quantidade": 1,
-    "valor": 9.0
+    "valor": 20.0
+  },
+  {
+    "nome": "leite",
+    "unidade": "l",
+    "quantidade": 1,
+    "valor": 5.4
+  },
+  {
+    "nome": "leite ninho",
+    "unidade": "g",
+    "quantidade": 100,
+    "valor": 2.5
+  },
+  {
+    "nome": "manteiga",
+    "unidade": "kg",
+    "quantidade": 1,
+    "valor": 58.5
   },
   {
     "nome": "mussarela",
@@ -78,15 +72,15 @@
     "valor": 45.0
   },
   {
-    "nome": "recheio de frango cremoso",
+    "nome": "nutella",
     "unidade": "g",
-    "quantidade": 1100,
-    "valor": 15.88
+    "quantidade": 750,
+    "valor": 21.5
   },
   {
-    "nome": "azeite",
-    "unidade": "ml",
-    "quantidade": 100,
-    "valor": 3.2
+    "nome": "ovos",
+    "unidade": "und",
+    "quantidade": 12,
+    "valor": 8.5
   }
 ]
