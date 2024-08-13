@@ -5,6 +5,6 @@
 - Calcular Custo de Receitas
 - Precificar Produtos
 
-# DEPENDENÊNCIAS 
+# Dependências
 
 - pyside6
